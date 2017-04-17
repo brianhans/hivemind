@@ -1,0 +1,6 @@
+framework module Pods_HiveMind {
+  umbrella header "Pods-HiveMind-umbrella.h"
+
+  export *
+  module * { export * }
+}
