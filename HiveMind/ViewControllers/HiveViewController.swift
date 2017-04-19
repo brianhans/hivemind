@@ -7,21 +7,25 @@
 //
 
 import UIKit
+import PBJHexagon
 
 class HiveViewController: UIViewController {
 
     let viewModel: HiveViewModel
     
     lazy var collectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: PBJHexagonFlowLayout())
         cv.delegate = self
-        cv.dataSource = self 
-        return cv 
+        cv.dataSource = self
+        cv.backgroundColor = UIColor.clear
+        return cv
     }()
     
     lazy var signalButton: UIButton = {
         let button = UIButton()
         button.setTitle("Signal", for: .normal)
+        button.addTarget(self, action: #selector(self.showSignalView), for: .touchUpInside)
+        button.backgroundColor = UIColor.blue
         return button
     }()
     
@@ -46,8 +50,12 @@ class HiveViewController: UIViewController {
     }
     
     func setupViews() {
+        collectionView.register(HiveUserCollectionViewCell.self, forCellWithReuseIdentifier: Constants.hiveUserCollectionViewCell)
+        
         self.navigationItem.title = viewModel.hive.name
         self.navigationItem.rightBarButtonItem = addButton
+        
+        self.view.backgroundColor = UIColor.white
         
         self.view.addSubview(collectionView)
         self.view.addSubview(signalButton)
@@ -64,7 +72,11 @@ class HiveViewController: UIViewController {
     }
     
     func showAddView() {
-        
+        present(AddContactViewController(), animated: true, completion: nil)
+    }
+    
+    func showSignalView() {
+        present(SignalViewController(), animated: true, completion: nil)
     }
 }
 

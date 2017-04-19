@@ -26,6 +26,8 @@ class HiveListViewController: UIViewController {
     }()
     
     func setupViews() {
+        tableView.register(HiveListTableViewCell.self, forCellReuseIdentifier: Constants.hiveListTableViewCell)
+
         self.navigationItem.title = "Hives"
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -86,6 +88,8 @@ extension HiveListViewController: UITableViewDataSource, UITableViewDelegate {
 //MARK: Add Hive Delegate
 extension HiveListViewController: AddHiveDelegate {
     func hiveCreated(hive: Hive) {
-        self.navigationController?.pushViewController(HiveViewController(hive: hive), animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(HiveViewController(hive: hive), animated: true)
+        }
     }
 }

@@ -27,6 +27,9 @@ class AddHiveViewController: UIViewController {
     
     lazy var exitButton: UIButton = {
         let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
+        button.contentMode = .scaleAspectFit
+        button.tintColor = UIColor.blue
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(close), for: .touchUpInside)
         return button
@@ -58,6 +61,8 @@ class AddHiveViewController: UIViewController {
         return view
     }()
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,8 +73,9 @@ class AddHiveViewController: UIViewController {
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(close))
+        tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
-        
+                
         self.view.addSubview(backgroundView)
         
         backgroundView.snp.makeConstraints { (make) in
@@ -84,7 +90,7 @@ class AddHiveViewController: UIViewController {
         
         exitButton.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().offset(10)
-            make.height.width.equalTo(50)
+            make.bottom.equalTo(titleLabel.snp.bottom)
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -123,5 +129,11 @@ class AddHiveViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }
         
+    }
+}
+
+extension AddHiveViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view == gestureRecognizer.view
     }
 }

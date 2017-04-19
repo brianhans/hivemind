@@ -11,4 +11,5 @@ import Foundation
 struct Constants {
     static let hiveListTableViewCell = "hiveListTableViewCell"
     static let hiveUserCollectionViewCell = "hiveUserCollectionViewCell"
+    static let contactsTableViewCell = "contactsTableViewCell"
 }

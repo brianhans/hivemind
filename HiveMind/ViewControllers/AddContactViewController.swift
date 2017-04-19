@@ -7,13 +7,130 @@
 //
 
 import UIKit
+import Contacts
 
 class AddContactViewController: UIViewController {
 
+    var checked: [CNContact] = []
+    var contacts: [CNContact] = []
+    var contactStore: CNContactStore!
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
+    lazy var navigationBar: UINavigationBar = {
+        let bar = UINavigationBar()
+        return bar
+    }()
+    
+    
+    lazy var doneButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupViews()
+        getContacts()
+    }
+    
+    func setupViews() {
+        tableView.register(ContactsTableViewCell.self, forCellReuseIdentifier: Constants.contactsTableViewCell)
+        
+        self.navigationItem.title = "Contacts"
+        self.navigationItem.rightBarButtonItem = doneButton
+        self.view.backgroundColor = UIColor.white
+        
+        navigationBar.pushItem(self.navigationItem, animated: false)
+        
+        self.view.addSubview(navigationBar)
+        self.view.addSubview(tableView)
+        
+        navigationBar.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(64)
+        }
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
+    }
+    
+    func getContacts() {
+        contactStore = CNContactStore()
+        requestForAccess { (success) in
+            if success {
+                let keys: [CNKeyDescriptor] = [CNContactGivenNameKey as CNKeyDescriptor, CNContactImageDataKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor]
+                
+                let predicate = CNContact.predicateForContactsInContainer(withIdentifier: self.contactStore.defaultContainerIdentifier())
+                if let contacts = try? self.contactStore.unifiedContacts(matching: predicate, keysToFetch: keys) {
+                    self.contacts = contacts
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
     }
 
+    
+    func requestForAccess(completionHandler: @escaping (_ accessGranted: Bool) -> Void) {
+        let authorizationStatus = CNContactStore.authorizationStatus(for: CNEntityType.contacts)
+        
+        switch authorizationStatus {
+        case .authorized:
+            completionHandler(true)
+            
+        case .denied, .notDetermined:
+            self.contactStore.requestAccess(for: CNEntityType.contacts, completionHandler: { (access, accessError) -> Void in
+                if access {
+                    completionHandler(access)
+                }
+                else {
+                    completionHandler(false)
+                }
+            })
+            
+        default:
+            completionHandler(false)
+        }
+    }
+    
+    func close() {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contacts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.contactsTableViewCell) as! ContactsTableViewCell
+        cell.setup(name: contacts[indexPath.row].givenName)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = tableView.cellForRow(at: indexPath) as! ContactsTableViewCell
+        
+        row.setSelected(false, animated: true)
+        
+        if let index = checked.index(of: contacts[indexPath.row]) {
+            checked.remove(at: index)
+            row.setChecked(false)
+        } else {
+            checked.append(contacts[indexPath.row])
+            row.setChecked(true)
+        }
+    }
 }

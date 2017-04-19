@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PBJHexagon.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HiveMind.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2CE882290A438CCF71292245DC356B9A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>56A8F3A0573188082BA81FE674EE9006</key>
+		<key>732FA4BBBD292EE87887B661E47412E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B175FAD5A93EEF057B995B72F42B65E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE667A1795F9E5683489BD570DA9F517</key>
 		<dict>
 			<key>primary</key>
 			<true/>
