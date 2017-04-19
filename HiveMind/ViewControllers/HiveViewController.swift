@@ -14,7 +14,15 @@ class HiveViewController: UIViewController {
     let viewModel: HiveViewModel
     
     lazy var collectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: PBJHexagonFlowLayout())
+        let flowLayout = PBJHexagonFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.sectionInset = .zero
+        flowLayout.headerReferenceSize = .zero
+        flowLayout.footerReferenceSize = .zero
+        flowLayout.itemSize = CGSize(width: 80, height: 92)
+        flowLayout.itemsPerRow = 4
+        
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.delegate = self
         cv.dataSource = self
         cv.backgroundColor = UIColor.clear
@@ -96,8 +104,9 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.hiveUserCollectionViewCell, for: indexPath) as! HiveUserCollectionViewCell
-        let user = viewModel.hive.users[indexPath.item]
-        cell.setup(user: user, color: viewModel.signal!.statusColors[user.status])
+//        let user = viewModel.hive.users[indexPath.item]
+//        cell.setup(user: user, color: viewModel.signal!.statusColors[user.status])
+        cell.layer.backgroundColor = UIColor.blue.cgColor
         return cell
     }
 }

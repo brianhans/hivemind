@@ -10,6 +10,8 @@
 		81E0B4C1D66BA50C43808816 /* Pods_HiveMind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCE9B9F01A9CE1206AF87E5 /* Pods_HiveMind.framework */; };
 		D3185D1A1EA6D80700DA7C7F /* SignalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3185D191EA6D80700DA7C7F /* SignalViewController.swift */; };
 		D3185D1C1EA6F64E00DA7C7F /* SignalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */; };
+		D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064B1EA803AF0055F99F /* ColorPickerController.swift */; };
+		D34D064F1EA810780055F99F /* UIColor+HexInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064E1EA810780055F99F /* UIColor+HexInit.swift */; };
 		D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694331EA412BC00875CF0 /* AppDelegate.swift */; };
 		D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694351EA412BC00875CF0 /* HiveListViewController.swift */; };
 		D356943B1EA412BC00875CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D356943A1EA412BC00875CF0 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		D3185D191EA6D80700DA7C7F /* SignalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalViewController.swift; sourceTree = "<group>"; };
 		D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalItemView.swift; sourceTree = "<group>"; };
 		D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiveMind-BridgingHeader.h"; sourceTree = "<group>"; };
+		D34D064B1EA803AF0055F99F /* ColorPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerController.swift; sourceTree = "<group>"; };
+		D34D064E1EA810780055F99F /* UIColor+HexInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexInit.swift"; sourceTree = "<group>"; };
 		D35694301EA412BC00875CF0 /* HiveMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiveMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35694331EA412BC00875CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D35694351EA412BC00875CF0 /* HiveListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HiveListViewController.swift; path = ../HiveListViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D34D064D1EA810430055F99F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D34D064E1EA810780055F99F /* UIColor+HexInit.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D35694271EA412BC00875CF0 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +119,7 @@
 		D35694321EA412BC00875CF0 /* HiveMind */ = {
 			isa = PBXGroup;
 			children = (
+				D34D064D1EA810430055F99F /* Extensions */,
 				D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */,
 				D35694491EA4382E00875CF0 /* Networking */,
 				D35694451EA4382000875CF0 /* ViewModels */,
@@ -161,6 +174,7 @@
 				D356945C1EA446F900875CF0 /* AddHiveViewController.swift */,
 				D35694621EA455F400875CF0 /* AddContactViewController.swift */,
 				D3185D191EA6D80700DA7C7F /* SignalViewController.swift */,
+				D34D064B1EA803AF0055F99F /* ColorPickerController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -300,6 +314,7 @@
 				D3185D1A1EA6D80700DA7C7F /* SignalViewController.swift in Sources */,
 				D3185D1C1EA6F64E00DA7C7F /* SignalItemView.swift in Sources */,
 				D35694651EA4789700875CF0 /* ContactsTableViewCell.swift in Sources */,
+				D34D064F1EA810780055F99F /* UIColor+HexInit.swift in Sources */,
 				D356944B1EA4398200875CF0 /* HiveListViewModel.swift in Sources */,
 				D35694531EA43AE600875CF0 /* HiveUser.swift in Sources */,
 				D35694571EA43B6900875CF0 /* Signal.swift in Sources */,
@@ -308,6 +323,7 @@
 				D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */,
 				D35694611EA4534300875CF0 /* HiveUserCollectionViewCell.swift in Sources */,
 				D35694631EA455F400875CF0 /* AddContactViewController.swift in Sources */,
+				D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */,
 				D356944D1EA43A0100875CF0 /* Constants.swift in Sources */,
 				D356945B1EA444B600875CF0 /* HiveViewModel.swift in Sources */,
 				D35694511EA43A9900875CF0 /* Hive.swift in Sources */,

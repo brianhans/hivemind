@@ -128,7 +128,6 @@ class AddHiveViewController: UIViewController {
         }) { _ in
             self.dismiss(animated: false, completion: nil)
         }
-        
     }
 }
 

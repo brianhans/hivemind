@@ -20,6 +20,7 @@ class SignalItemView: UIView {
         
         super.init(frame: frame)
         setupViews()
+        layoutIfNeeded()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,12 +37,14 @@ class SignalItemView: UIView {
         colorButton.snp.makeConstraints { (make) in
             make.left.equalToSuperview()
             make.height.width.equalTo(50)
+            make.centerY.equalToSuperview()
         }
         
         signalTitleTextField.snp.makeConstraints { (make) in
             make.left.equalTo(colorButton.snp.right).offset(20)
             make.right.equalToSuperview()
             make.top.bottom.equalToSuperview()
+            make.height.equalTo(60)
         }
     }
     
@@ -49,11 +52,10 @@ class SignalItemView: UIView {
         self.colorButton.backgroundColor = color
     }
     
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
         //Make color button a circle
         self.colorButton.layer.cornerRadius = self.colorButton.frame.width / 2
     }
-
 }

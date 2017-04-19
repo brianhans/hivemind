@@ -10,6 +10,8 @@ import UIKit
 
 class SignalViewController: UIViewController {
 
+    var colors: [UIColor] = [.brightGreen, .goldenTainoi, .dullRed]
+    
     lazy var navigationBar: UINavigationBar = {
         let bar = UINavigationBar()
         return bar
@@ -22,6 +24,7 @@ class SignalViewController: UIViewController {
     
     lazy var sendButton: UIButton = {
         let button = UIButton()
+        button.addTarget(self, action: #selector(sendSignal), for: .touchUpInside)
         button.setTitle("Send", for: .normal)
         button.backgroundColor = UIColor.blue
         button.layer.cornerRadius = 5
@@ -32,6 +35,7 @@ class SignalViewController: UIViewController {
     lazy var signalItemStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
+        stack.distribution = .fillEqually
         return stack
     }()
     
@@ -41,6 +45,16 @@ class SignalViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 40)
         textField.placeholder = "Enter title"
         return textField
+    }()
+    
+    lazy var addField: UIButton = {
+        let view = UIButton()
+        view.addTarget(self, action: #selector(addInputField), for: .touchUpInside)
+        view.backgroundColor = .clear
+        view.setTitleColor(.black, for: .normal)
+        view.setTitle("+ Add Field", for: .normal)
+        
+        return view
     }()
     
     var contentView: UIView = UIView()
@@ -56,7 +70,7 @@ class SignalViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = cancelButton
         self.view.backgroundColor = UIColor.white
         
-        let signalItem = SignalItemView(frame: .zero, color: .blue)
+        let signalItem = SignalItemView(frame: .zero, color: colors[0])
         
         navigationBar.pushItem(self.navigationItem, animated: false)
         
@@ -66,6 +80,8 @@ class SignalViewController: UIViewController {
         self.contentView.addSubview(titleTextField)
         self.contentView.addSubview(signalItemStackView)
         signalItemStackView.addArrangedSubview(signalItem)
+        signalItem.colorButton.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
+        signalItemStackView.addArrangedSubview(addField)
         
         navigationBar.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
@@ -87,7 +103,7 @@ class SignalViewController: UIViewController {
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.top.equalTo(titleTextField.snp.bottom).offset(20)
-            make.bottom.equalTo(sendButton.snp.top).offset(20)
+            make.height.equalTo(180 + (15 * 3))
         }
         
         sendButton.snp.makeConstraints { (make) in
@@ -97,6 +113,40 @@ class SignalViewController: UIViewController {
             make.right.equalToSuperview().offset(-50)
             make.bottom.equalToSuperview().offset(-50)
         }
+    }
+    
+    func sendSignal() {
+        var options: [String] = []
+        var colors: [UIColor] = []
+        for item in signalItemStackView.arrangedSubviews {
+            if let signialItem = item as? SignalItemView, let option = signialItem.signalTitleTextField.text {
+                options.append(option)
+                colors.append(signialItem.colorButton.backgroundColor!)
+            }
+        }
+        
+        //TODO: Send to server
+    }
+    
+    func addInputField() {
+        let signalItem = SignalItemView(frame: .zero, color: colors[signalItemStackView.arrangedSubviews.count - 1])
+        signalItem.colorButton.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
+        signalItemStackView.insertArrangedSubview(signalItem, at: signalItemStackView.arrangedSubviews.count - 1)
+        
+        //Remove the add button if they reach the max amount
+        if signalItemStackView.arrangedSubviews.count > 3 {
+            addField.removeFromSuperview()
+        }
+    }
+    
+    func showColorPicker(sender: UIButton) {
+        let colorPickerController = ColorPickerController { (color) in
+            sender.backgroundColor = color
+        }
+        
+        colorPickerController.modalPresentationStyle = .overCurrentContext
+        colorPickerController.modalTransitionStyle = .crossDissolve
+        self.present(colorPickerController, animated: true, completion: nil)
     }
     
     func close() {
