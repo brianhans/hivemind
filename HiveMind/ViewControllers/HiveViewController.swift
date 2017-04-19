@@ -19,8 +19,10 @@ class HiveViewController: UIViewController {
         flowLayout.sectionInset = .zero
         flowLayout.headerReferenceSize = .zero
         flowLayout.footerReferenceSize = .zero
-        flowLayout.itemSize = CGSize(width: 80, height: 92)
-        flowLayout.itemsPerRow = 4
+        let width = UIScreen.main.bounds.width / 3 - 25
+        let height = width * 2 / sqrt(3)
+        flowLayout.itemSize = CGSize(width: width, height: height)
+        flowLayout.itemsPerRow = 3
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         cv.delegate = self
@@ -90,7 +92,7 @@ class HiveViewController: UIViewController {
 
 //MARK: Collection View
 
-extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //Only show users if there is currently a signal
@@ -98,7 +100,7 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return viewModel.hive.users.count
         } else {
             //TODO: Show empty state
-            return 0
+            return 2
         }
     }
     
@@ -108,5 +110,10 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        cell.setup(user: user, color: viewModel.signal!.statusColors[user.status])
         cell.layer.backgroundColor = UIColor.blue.cgColor
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = CGFloat((collectionView.frame.size.width / 3)) - 5
+        return CGSize(width: height, height: height)
     }
 }

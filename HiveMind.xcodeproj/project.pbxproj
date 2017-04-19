@@ -12,6 +12,7 @@
 		D3185D1C1EA6F64E00DA7C7F /* SignalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */; };
 		D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064B1EA803AF0055F99F /* ColorPickerController.swift */; };
 		D34D064F1EA810780055F99F /* UIColor+HexInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064E1EA810780055F99F /* UIColor+HexInit.swift */; };
+		D34D06511EA817E80055F99F /* UIBezierPath+Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */; };
 		D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694331EA412BC00875CF0 /* AppDelegate.swift */; };
 		D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694351EA412BC00875CF0 /* HiveListViewController.swift */; };
 		D356943B1EA412BC00875CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D356943A1EA412BC00875CF0 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiveMind-BridgingHeader.h"; sourceTree = "<group>"; };
 		D34D064B1EA803AF0055F99F /* ColorPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerController.swift; sourceTree = "<group>"; };
 		D34D064E1EA810780055F99F /* UIColor+HexInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexInit.swift"; sourceTree = "<group>"; };
+		D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Polygon.swift"; sourceTree = "<group>"; };
 		D35694301EA412BC00875CF0 /* HiveMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiveMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35694331EA412BC00875CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D35694351EA412BC00875CF0 /* HiveListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HiveListViewController.swift; path = ../HiveListViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				D34D064E1EA810780055F99F /* UIColor+HexInit.swift */,
+				D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -120,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				D34D064D1EA810430055F99F /* Extensions */,
-				D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */,
 				D35694491EA4382E00875CF0 /* Networking */,
 				D35694451EA4382000875CF0 /* ViewModels */,
 				D35694461EA4382000875CF0 /* Models */,
@@ -131,6 +133,7 @@
 				D356943C1EA412BC00875CF0 /* LaunchScreen.storyboard */,
 				D356943F1EA412BC00875CF0 /* Info.plist */,
 				D356944C1EA43A0100875CF0 /* Constants.swift */,
+				D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */,
 			);
 			path = HiveMind;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34D06511EA817E80055F99F /* UIBezierPath+Polygon.swift in Sources */,
 				D356945D1EA446F900875CF0 /* AddHiveViewController.swift in Sources */,
 				D356944F1EA43A2700875CF0 /* HiveListTableViewCell.swift in Sources */,
 				D3185D1A1EA6D80700DA7C7F /* SignalViewController.swift in Sources */,

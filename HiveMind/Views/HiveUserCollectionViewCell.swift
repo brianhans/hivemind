@@ -37,4 +37,28 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
         self.titleLabel.text = user.name
         self.backgroundColor = color ?? .white
     }
+    
+    override func layoutSubviews() {
+        let lineWidth = CGFloat(1)
+        
+        //        let path = roundedPolygonPath(rect: self.frame, lineWidth: lineWidth, sides: sides, cornerRadius: 15.0, rotationOffset: CGFloat(.pi / 2.0))
+        let path = UIBezierPath.roundedPolygonPath(rect: self.bounds, lineWidth: 1, sides: 6, cornerRadius: 0)
+        path.rotateAroundCenter(radians: CGFloat(90.degreesToRadians))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
+        
+//        let borderLayer = CAShapeLayer()
+//        borderLayer.frame = self.bounds
+//        borderLayer.path = path.cgPath
+//        borderLayer.lineWidth = lineWidth
+//        //        borderLayer.lineJoin = kCALineJoinRound
+//        //        borderLayer.lineCap = kCALineCapRound
+//        borderLayer.strokeColor = UIColor.black.cgColor
+//        borderLayer.fillColor = UIColor.white.cgColor
+//        
+//        self.layer.addSublayer(borderLayer)
+    }
+    
+
 }
