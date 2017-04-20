@@ -82,11 +82,20 @@ class HiveViewController: UIViewController {
     }
     
     func showAddView() {
-        present(AddContactViewController(), animated: true, completion: nil)
+        let contactController = AddContactViewController(users: self.viewModel.hive.users) { contacts in
+            self.viewModel.hive.users = contacts
+            HiveProvider.addToHive(id: self.viewModel.hive.id, numbers: self.viewModel.hive.users.map{$0.phoneNumber})
+        }
+        
+        present(contactController, animated: true, completion: nil)
     }
     
     func showSignalView() {
-        present(SignalViewController(), animated: true, completion: nil)
+        let signalVC = SignalViewController() { title, options in
+            HiveProvider.sendSignal(id: self.viewModel.hive.id, command: title, options: options)
+        }
+        
+        present(signalVC, animated: true, completion: nil)
     }
 }
 

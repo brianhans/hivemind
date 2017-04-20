@@ -8,8 +8,13 @@
 
 import Foundation
 
-struct Hive {
+class Hive {
     let id: String
     var name: String
     var users: [HiveUser] = []
+    
+    init(id: String, name: String, users: [HiveUser] = []) {
+        self.id = id
+        self.name = name
+    }
 }

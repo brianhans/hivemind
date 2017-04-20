@@ -89,7 +89,15 @@ extension HiveListViewController: UITableViewDataSource, UITableViewDelegate {
 extension HiveListViewController: AddHiveDelegate {
     func hiveCreated(hive: Hive) {
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(HiveViewController(hive: hive), animated: true)
+            HiveProvider.createHive(name: hive.name, completion: { (hive, error) in
+                if let error = error {
+                    print(error)
+                }
+                
+                if let hive = hive {
+                    self.navigationController?.pushViewController(HiveViewController(hive: hive), animated: true)
+                }
+            })
         }
     }
 }

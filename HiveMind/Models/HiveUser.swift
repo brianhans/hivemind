@@ -11,6 +11,6 @@ import UIKit
 struct HiveUser {
     let name: String
     let phoneNumber: String
-    let picture: UIImage
-    var status: String
+    let picture: UIImage?
+    var status: String?
 }

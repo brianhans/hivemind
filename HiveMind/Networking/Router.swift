@@ -13,6 +13,7 @@ import Alamofire
 enum HiveRouter {
     case createHive(name: String)
     case addToHive(id: String, numbers: [String])
+    case removeFromHive(id: String, numbers: [String])
     case sendSignal(id: String, command: String, options: [String])
     case getHive(id: String)
     
@@ -22,12 +23,14 @@ enum HiveRouter {
             return .post
         case .getHive:
             return .get
+        case .removeFromHive:
+            return .delete
         }
     }
     
     var path: String {
         switch self {
-        case let .addToHive(id, _):
+        case let .addToHive(id, _), let .removeFromHive(id, _):
             return "/drones/\(id)"
         case .createHive:
             return "/hives"
@@ -40,11 +43,11 @@ enum HiveRouter {
     
     var parameters: [String: Any]? {
         switch self {
-        case let .addToHive(_, numbers):
+        case let .addToHive(_, numbers), let .removeFromHive(_, numbers):
             return [Constants.numbers: numbers]
         case let .sendSignal(_, command, options):
             return [Constants.commnd: command, Constants.options: options]
-        case .createHive(name):
+        case let .createHive(name):
             return [Constants.hiveName: name, Constants.dateCreated: Date().timeIntervalSince1970]
         default:
             return nil
@@ -52,7 +55,7 @@ enum HiveRouter {
     }
     
     func asURLRequest() throws -> URLRequest {
-        let url = try Constants.baseURL
+        let url = Constants.baseURL
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         

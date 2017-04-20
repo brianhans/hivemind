@@ -29,7 +29,6 @@ extension UIBezierPath {
         
         
         let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle),y: center.y + (radius - cornerRadius) * sin(angle))
-        print(corner)
         path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta),y: corner.y + cornerRadius * sin(angle + theta)))
         
         for _ in 0..<sides {
@@ -38,7 +37,6 @@ extension UIBezierPath {
             let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
             let start = CGPoint(x: corner.x + cornerRadius * cos(angle - theta),y: corner.y + cornerRadius * sin(angle - theta))
             let end = CGPoint(x:corner.x + cornerRadius * cos(angle + theta), y:corner.y + cornerRadius * sin(angle + theta))
-            print(corner)
             path.addLine(to: start)
             path.addLine(to: end)
         }

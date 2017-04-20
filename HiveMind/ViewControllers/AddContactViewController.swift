@@ -11,6 +11,7 @@ import Contacts
 
 class AddContactViewController: UIViewController {
 
+    var existingContacts: Set<String>
     var checked: [CNContact] = []
     var contacts: [CNContact] = []
     var contactStore: CNContactStore!
@@ -32,6 +33,23 @@ class AddContactViewController: UIViewController {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         return button
     }()
+    
+    var completion: (([HiveUser]) -> Void)?
+    
+    init(users: [HiveUser], completion: @escaping ([HiveUser]) -> Void) {
+        existingContacts = Set()
+        for user in users {
+            existingContacts.insert(user.phoneNumber)
+        }
+        
+        self.completion = completion
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +90,11 @@ class AddContactViewController: UIViewController {
                 let predicate = CNContact.predicateForContactsInContainer(withIdentifier: self.contactStore.defaultContainerIdentifier())
                 if let contacts = try? self.contactStore.unifiedContacts(matching: predicate, keysToFetch: keys) {
                     self.contacts = contacts
+                    for contact in contacts {
+                        if self.existingContacts.contains(contact.phoneNumbers[0].value.stringValue) {
+                            self.checked.append(contact)
+                        }
+                    }
                     self.tableView.reloadData()
                 }
             } else {
@@ -105,6 +128,17 @@ class AddContactViewController: UIViewController {
     }
     
     func close() {
+        var hiveContacts: [HiveUser] = []
+        for contact in checked {
+            var image: UIImage? = nil
+            if let imageData = contact.imageData {
+                image = UIImage(data: imageData)
+            }
+            
+            hiveContacts.append(HiveUser(name: contact.givenName, phoneNumber: contact.phoneNumbers[0].value.stringValue, picture: image, status: nil))
+        }
+        
+        completion?(hiveContacts)
         self.dismiss(animated: true, completion: nil)
     }
 }
