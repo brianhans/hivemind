@@ -13,6 +13,7 @@
 		D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064B1EA803AF0055F99F /* ColorPickerController.swift */; };
 		D34D064F1EA810780055F99F /* UIColor+HexInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064E1EA810780055F99F /* UIColor+HexInit.swift */; };
 		D34D06511EA817E80055F99F /* UIBezierPath+Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */; };
+		D34D06531EA82EAE0055F99F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D06521EA82EAE0055F99F /* Router.swift */; };
 		D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694331EA412BC00875CF0 /* AppDelegate.swift */; };
 		D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694351EA412BC00875CF0 /* HiveListViewController.swift */; };
 		D356943B1EA412BC00875CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D356943A1EA412BC00875CF0 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		D34D064B1EA803AF0055F99F /* ColorPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerController.swift; sourceTree = "<group>"; };
 		D34D064E1EA810780055F99F /* UIColor+HexInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexInit.swift"; sourceTree = "<group>"; };
 		D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Polygon.swift"; sourceTree = "<group>"; };
+		D34D06521EA82EAE0055F99F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D35694301EA412BC00875CF0 /* HiveMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiveMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35694331EA412BC00875CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D35694351EA412BC00875CF0 /* HiveListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HiveListViewController.swift; path = ../HiveListViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		D35694491EA4382E00875CF0 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D34D06521EA82EAE0055F99F /* Router.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				D356944B1EA4398200875CF0 /* HiveListViewModel.swift in Sources */,
 				D35694531EA43AE600875CF0 /* HiveUser.swift in Sources */,
 				D35694571EA43B6900875CF0 /* Signal.swift in Sources */,
+				D34D06531EA82EAE0055F99F /* Router.swift in Sources */,
 				D35694591EA444AD00875CF0 /* HiveViewController.swift in Sources */,
 				D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */,
 				D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */,
