@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 
-enum HiveRouter {
+enum HiveRouter: URLRequestConvertible {
     case createHive(name: String)
     case addToHive(id: String, numbers: [String])
     case removeFromHive(id: String, numbers: [String])

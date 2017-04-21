@@ -32,6 +32,7 @@
 		D35694611EA4534300875CF0 /* HiveUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694601EA4534300875CF0 /* HiveUserCollectionViewCell.swift */; };
 		D35694631EA455F400875CF0 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694621EA455F400875CF0 /* AddContactViewController.swift */; };
 		D35694651EA4789700875CF0 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694641EA4789700875CF0 /* ContactsTableViewCell.swift */; };
+		D36C0C011EAA75E100F00E58 /* Hive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D36C0BFF1EAA75E100F00E58 /* Hive.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		D35694601EA4534300875CF0 /* HiveUserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		D35694621EA455F400875CF0 /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		D35694641EA4789700875CF0 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		D36C0C001EAA75E100F00E58 /* Hive.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hive.xcdatamodel; sourceTree = "<group>"; };
 		D3A45E96FC8093DB16AA172F /* Pods-HiveMind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiveMind.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 				D356943F1EA412BC00875CF0 /* Info.plist */,
 				D356944C1EA43A0100875CF0 /* Constants.swift */,
 				D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */,
+				D36C0BFF1EAA75E100F00E58 /* Hive.xcdatamodeld */,
 			);
 			path = HiveMind;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				D35694591EA444AD00875CF0 /* HiveViewController.swift in Sources */,
 				D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */,
 				D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */,
+				D36C0C011EAA75E100F00E58 /* Hive.xcdatamodeld in Sources */,
 				D35694611EA4534300875CF0 /* HiveUserCollectionViewCell.swift in Sources */,
 				D35694631EA455F400875CF0 /* AddContactViewController.swift in Sources */,
 				D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */,
@@ -504,6 +508,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D36C0BFF1EAA75E100F00E58 /* Hive.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D36C0C001EAA75E100F00E58 /* Hive.xcdatamodel */,
+			);
+			currentVersion = D36C0C001EAA75E100F00E58 /* Hive.xcdatamodel */;
+			path = Hive.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D35694281EA412BC00875CF0 /* Project object */;
 }

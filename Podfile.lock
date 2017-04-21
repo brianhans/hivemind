@@ -2,17 +2,20 @@ PODS:
   - Alamofire (4.4.0)
   - PBJHexagon (0.1.1)
   - SnapKit (3.2.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - PBJHexagon
   - SnapKit (~> 3.2.0)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   PBJHexagon: 689c33964ff02f71f90d86fb181cbfdabce7886a
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 41f58fdf3d1d60cabea14d136fc0b0bac20a0fbb
+PODFILE CHECKSUM: d7174c1cc62f6e5caafdab2da364fa3f11b3cbaa
 
 COCOAPODS: 1.2.0

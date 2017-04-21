@@ -54,6 +54,8 @@ extension HiveListViewController {
         super.viewDidLoad()
         
         setupViews()
+        self.viewModel.hives = Hive.getHives()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,6 +84,7 @@ extension HiveListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let hiveController = HiveViewController(hive: viewModel.hives[indexPath.row])
         self.navigationController?.pushViewController(hiveController, animated: true)
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
     }
 }
 
@@ -95,6 +98,7 @@ extension HiveListViewController: AddHiveDelegate {
                 }
                 
                 if let hive = hive {
+                    hive.save()
                     self.navigationController?.pushViewController(HiveViewController(hive: hive), animated: true)
                 }
             })

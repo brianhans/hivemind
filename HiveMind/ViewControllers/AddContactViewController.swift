@@ -85,7 +85,7 @@ class AddContactViewController: UIViewController {
         contactStore = CNContactStore()
         requestForAccess { (success) in
             if success {
-                let keys: [CNKeyDescriptor] = [CNContactGivenNameKey as CNKeyDescriptor, CNContactImageDataKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor]
+                let keys: [CNKeyDescriptor] = [CNContactGivenNameKey as CNKeyDescriptor, CNContactFamilyNameKey as CNKeyDescriptor, CNContactImageDataKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor]
                 
                 let predicate = CNContact.predicateForContactsInContainer(withIdentifier: self.contactStore.defaultContainerIdentifier())
                 if let contacts = try? self.contactStore.unifiedContacts(matching: predicate, keysToFetch: keys) {
@@ -135,7 +135,7 @@ class AddContactViewController: UIViewController {
                 image = UIImage(data: imageData)
             }
             
-            hiveContacts.append(HiveUser(name: contact.givenName, phoneNumber: contact.phoneNumbers[0].value.stringValue, picture: image, status: nil))
+            hiveContacts.append(HiveUser(name: "\(contact.givenName) \(contact.familyName)", phoneNumber: contact.phoneNumbers[0].value.stringValue, picture: image, status: nil))
         }
         
         completion?(hiveContacts)
@@ -150,7 +150,7 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.contactsTableViewCell) as! ContactsTableViewCell
-        cell.setup(name: contacts[indexPath.row].givenName)
+        cell.setup(name: "\(contacts[indexPath.row].givenName) \(contacts[indexPath.row].familyName)")
         return cell
     }
     

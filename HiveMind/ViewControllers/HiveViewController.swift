@@ -28,6 +28,8 @@ class HiveViewController: UIViewController {
         cv.delegate = self
         cv.dataSource = self
         cv.backgroundColor = UIColor.clear
+        cv.bounces = true
+        cv.alwaysBounceVertical = true
         return cv
     }()
     
@@ -43,6 +45,13 @@ class HiveViewController: UIViewController {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.showAddView))
         return button
     }()
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateHive), for: .valueChanged)
+        return refresh
+    }()
+    
 
     init(hive: Hive) {
         viewModel = HiveViewModel(hive: hive)
@@ -57,10 +66,12 @@ class HiveViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        updateHive()
     }
     
     func setupViews() {
         collectionView.register(HiveUserCollectionViewCell.self, forCellWithReuseIdentifier: Constants.hiveUserCollectionViewCell)
+        collectionView.addSubview(refreshControl)
         
         self.navigationItem.title = viewModel.hive.name
         self.navigationItem.rightBarButtonItem = addButton
@@ -84,18 +95,29 @@ class HiveViewController: UIViewController {
     func showAddView() {
         let contactController = AddContactViewController(users: self.viewModel.hive.users) { contacts in
             self.viewModel.hive.users = contacts
+            self.viewModel.hive.save()
             HiveProvider.addToHive(id: self.viewModel.hive.id, numbers: self.viewModel.hive.users.map{$0.phoneNumber})
+            self.collectionView.reloadData()
         }
         
         present(contactController, animated: true, completion: nil)
     }
     
     func showSignalView() {
-        let signalVC = SignalViewController() { title, options in
-            HiveProvider.sendSignal(id: self.viewModel.hive.id, command: title, options: options)
+        let signalVC = SignalViewController() { signal in
+            self.viewModel.hive.signal = signal
+            self.viewModel.hive.save()
+            HiveProvider.sendSignal(id: self.viewModel.hive.id, command: signal.title, options: signal.options)
         }
         
         present(signalVC, animated: true, completion: nil)
+    }
+    
+    func updateHive() {
+        viewModel.updateHive { _ in
+            self.collectionView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
 }
 
@@ -104,20 +126,14 @@ class HiveViewController: UIViewController {
 extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //Only show users if there is currently a signal
-        if viewModel.signal != nil {
-            return viewModel.hive.users.count
-        } else {
-            //TODO: Show empty state
-            return 2
-        }
+        return viewModel.hive.users.count
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.hiveUserCollectionViewCell, for: indexPath) as! HiveUserCollectionViewCell
-//        let user = viewModel.hive.users[indexPath.item]
-//        cell.setup(user: user, color: viewModel.signal!.statusColors[user.status])
-        cell.layer.backgroundColor = UIColor.blue.cgColor
+        let user = viewModel.hive.users[indexPath.item]
+        cell.setup(user: user, color: viewModel.signal?.statusColors[user.status ?? "unknown"] ?? .yellow)
         return cell
     }
     

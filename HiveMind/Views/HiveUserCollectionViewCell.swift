@@ -12,6 +12,9 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         var label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 50)
         return label
     }()
     
@@ -28,36 +31,24 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
         self.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-8)
             make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview()
         }
     }
     
     func setup(user: HiveUser, color: UIColor?) {
-        self.titleLabel.text = user.name
+        let initials = user.name.components(separatedBy: " ").map{$0.substring(to: $0.index($0.startIndex, offsetBy: 1))}.joined()
+        self.titleLabel.text = initials
         self.backgroundColor = color ?? .white
     }
     
     override func layoutSubviews() {
-        let lineWidth = CGFloat(1)
-        
-        //        let path = roundedPolygonPath(rect: self.frame, lineWidth: lineWidth, sides: sides, cornerRadius: 15.0, rotationOffset: CGFloat(.pi / 2.0))
         let path = UIBezierPath.roundedPolygonPath(rect: self.bounds, lineWidth: 1, sides: 6, cornerRadius: 0)
         path.rotateAroundCenter(radians: CGFloat(90.degreesToRadians))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         self.layer.mask = mask
-        
-//        let borderLayer = CAShapeLayer()
-//        borderLayer.frame = self.bounds
-//        borderLayer.path = path.cgPath
-//        borderLayer.lineWidth = lineWidth
-//        //        borderLayer.lineJoin = kCALineJoinRound
-//        //        borderLayer.lineCap = kCALineCapRound
-//        borderLayer.strokeColor = UIColor.black.cgColor
-//        borderLayer.fillColor = UIColor.white.cgColor
-//        
-//        self.layer.addSublayer(borderLayer)
     }
     
 

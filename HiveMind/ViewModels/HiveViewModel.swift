@@ -17,4 +17,19 @@ class HiveViewModel {
         self.hive = hive
     }
     
+    func updateHive(completion: @escaping (Hive?) -> Void) {
+        HiveProvider.getHive(id: hive.id) { (hive, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            if let hive = hive {
+                self.hive.users = hive.users
+                return completion(hive)
+            }
+            
+            completion(nil)
+        }
+    }
+    
 }

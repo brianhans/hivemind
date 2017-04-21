@@ -58,9 +58,9 @@ class SignalViewController: UIViewController {
     }()
     
     var contentView: UIView = UIView()
-    var completion: ((String, [String]) -> Void)?
+    var completion: ((Signal) -> Void)?
     
-    init(completion: @escaping (String, [String]) -> Void) {
+    init(completion: @escaping (Signal) -> Void) {
         self.completion = completion
         
         super.init(nibName: nil, bundle: nil)
@@ -136,7 +136,16 @@ class SignalViewController: UIViewController {
             }
         }
         
-        //TODO: Send to server
+        if let title = titleTextField.text, !title.isEmpty {
+            var colorDict: [String: UIColor] = [:]
+            for i in 0..<options.count {
+                colorDict[options[i]] = colors[i]
+            }
+           
+            let newSignal = Signal(title: title, options: options, statusColors: colorDict)
+            completion?(newSignal)
+        }
+        dismiss(animated: true, completion: nil)
         
     }
     
