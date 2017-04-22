@@ -99,6 +99,8 @@ extension HiveListViewController: AddHiveDelegate {
                 
                 if let hive = hive {
                     hive.save()
+                    self.viewModel.hives.append(hive)
+                    self.tableView.reloadData()
                     self.navigationController?.pushViewController(HiveViewController(hive: hive), animated: true)
                 }
             })
