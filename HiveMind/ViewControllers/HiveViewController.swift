@@ -52,6 +52,7 @@ class HiveViewController: UIViewController {
         return refresh
     }()
     
+    
 
     init(hive: Hive) {
         viewModel = HiveViewModel(hive: hive)

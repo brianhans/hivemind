@@ -13,11 +13,24 @@ class HiveListViewController: UIViewController {
     
     let viewModel = HiveListViewModel()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        return tableView
+    lazy var collectionView: UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        let height: CGFloat = UIScreen.main.bounds.height
+        let width: CGFloat = UIScreen.main.bounds.width
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        
+        let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
+        cv.backgroundColor = .white
+
+        
+        
+        cv.delegate = self
+        cv.dataSource = self
+        
+        return cv
+        
     }()
     
     lazy var addButton: UIBarButtonItem = {
@@ -26,14 +39,14 @@ class HiveListViewController: UIViewController {
     }()
     
     func setupViews() {
-        tableView.register(HiveListTableViewCell.self, forCellReuseIdentifier: Constants.hiveListTableViewCell)
+        collectionView.register(HiveListCollectionViewCell.self, forCellWithReuseIdentifier: Constants.hiveListTableViewCell)
 
         self.navigationItem.title = "Hives"
         self.navigationItem.rightBarButtonItem = addButton
         
-        self.view.addSubview(tableView)
+        self.view.addSubview(collectionView)
         
-        tableView.snp.makeConstraints { (make) in
+        collectionView.snp.makeConstraints { (make) in
             make.top.bottom.left.right.equalToSuperview()
         }
     }
@@ -50,12 +63,13 @@ class HiveListViewController: UIViewController {
 //MARK: Lifecycle methods
 
 extension HiveListViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         self.viewModel.hives = Hive.getHives()
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,26 +80,44 @@ extension HiveListViewController {
 
 //MARK: TableView methods
 
-extension HiveListViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension HiveListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel.hives.count
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.hiveListTableViewCell) as! HiveListTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.hiveListTableViewCell, for: indexPath) as! HiveListCollectionViewCell
+        
         cell.setup(hive: viewModel.hives[indexPath.row])
+        
         return cell
+        
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let hiveController = HiveViewController(hive: viewModel.hives[indexPath.row])
         self.navigationController?.pushViewController(hiveController, animated: true)
-        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+        collectionView.cellForItem(at: indexPath) //.setSelected(false, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        
+        let width: CGFloat = UIScreen.main.bounds.width - 20
+        let height: CGFloat = 100
+
+        return CGSize(width: width, height: height)
+        
+        
+    }
+
 }
 
 //MARK: Add Hive Delegate
@@ -100,7 +132,7 @@ extension HiveListViewController: AddHiveDelegate {
                 if let hive = hive {
                     hive.save()
                     self.viewModel.hives.append(hive)
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                     self.navigationController?.pushViewController(HiveViewController(hive: hive), animated: true)
                 }
             })
