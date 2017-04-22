@@ -52,6 +52,7 @@ class HiveViewController: UIViewController {
         return refresh
     }()
     
+    
 
     init(hive: Hive) {
         viewModel = HiveViewModel(hive: hive)
@@ -86,6 +87,9 @@ class HiveViewController: UIViewController {
             make.height.equalTo(50)
         }
         
+
+    
+
         collectionView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(signalButton.snp.top)

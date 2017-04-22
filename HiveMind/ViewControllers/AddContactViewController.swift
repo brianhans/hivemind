@@ -14,7 +14,10 @@ class AddContactViewController: UIViewController {
     var existingContacts: Set<String>
     var checked: [CNContact] = []
     var contacts: [CNContact] = []
+    var filteredContacts: [CNContact] = []
+    
     var contactStore: CNContactStore!
+    
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -32,6 +35,13 @@ class AddContactViewController: UIViewController {
     lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         return button
+    }()
+    
+    lazy var searchTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Search"
+        textField.delegate = self
+        return textField
     }()
     
     var completion: (([HiveUser]) -> Void)?
@@ -69,16 +79,24 @@ class AddContactViewController: UIViewController {
         
         self.view.addSubview(navigationBar)
         self.view.addSubview(tableView)
+        self.view.addSubview(searchTextField)
         
         navigationBar.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(64)
         }
         
-        tableView.snp.makeConstraints { (make) in
+        searchTextField.snp.makeConstraints{ (make) in
             make.top.equalTo(navigationBar.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(searchTextField.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
+    
     }
     
     func getContacts() {
@@ -144,13 +162,26 @@ class AddContactViewController: UIViewController {
 }
 
 extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func getDataSource() -> [CNContact]{
+        if let text = self.searchTextField.text{
+            if text.characters.count > 0 {
+                return filteredContacts
+            }
+        }
+        
+        return contacts
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
+        return self.getDataSource().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.contactsTableViewCell) as! ContactsTableViewCell
-        cell.setup(name: "\(contacts[indexPath.row].givenName) \(contacts[indexPath.row].familyName)")
+        let dataSource = getDataSource()
+        cell.setup(name: "\(dataSource[indexPath.row].givenName) \(dataSource[indexPath.row].familyName)")
         return cell
     }
     
@@ -158,13 +189,40 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
         let row = tableView.cellForRow(at: indexPath) as! ContactsTableViewCell
         
         row.setSelected(false, animated: true)
+        let dataSource = getDataSource()
         
-        if let index = checked.index(of: contacts[indexPath.row]) {
+
+        
+        if let index = checked.index(of: dataSource[indexPath.row]) {
             checked.remove(at: index)
             row.setChecked(false)
         } else {
-            checked.append(contacts[indexPath.row])
+            checked.append(dataSource[indexPath.row])
             row.setChecked(true)
         }
     }
+}
+
+
+extension AddContactViewController: UITextFieldDelegate{
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        var contactsFound: [CNContact] = []
+
+        if let text = textField.text {
+            let updatedText = NSString(string: text).replacingCharacters(in: range, with: string)
+            contactsFound = contacts.filter({$0.givenName.contains(updatedText)})
+        }
+        
+        self.filteredContacts = contactsFound
+        self.tableView.reloadData()
+        
+        return true
+        
+    }
+    
+    
+    
 }
