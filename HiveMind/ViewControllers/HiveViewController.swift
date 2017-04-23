@@ -40,7 +40,7 @@ class HiveViewController: UIViewController {
     }()
     
     lazy var addButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.showSignalView))
+        let button = UIBarButtonItem(title: "Signal", style: .plain, target: self, action: #selector(self.showSignalView))
         return button
     }()
     

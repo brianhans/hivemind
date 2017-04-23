@@ -9,12 +9,25 @@
 import UIKit
 import CoreData
 import SwiftyJSON
+import Contacts
 
-struct HiveUser {
+struct HiveUser: Equatable {
     let name: String
     let phoneNumber: String
     let picture: UIImage?
     var status: Int
+    
+    init(contact: CNContact) {
+        var image: UIImage? = nil
+        if let imageData = contact.imageData {
+            image = UIImage(data: imageData)
+        }
+        
+        self.picture = image
+        self.name = "\(contact.givenName) \(contact.familyName)"
+        self.phoneNumber = contact.phoneNumbers[0].value.stringValue.cleanPhoneNumber()
+        self.status = 0
+    }
     
     init(name: String, phoneNumber: String, picture: UIImage?, status: Int = 0) {
         self.name = name
@@ -81,11 +94,7 @@ struct HiveUser {
             user = NSManagedObject(entity: entity, insertInto: managedContext)
         }
         
-        var cleanedNumber = phoneNumber
-        if let regex = try? NSRegularExpression(pattern: "-|\\s|\\(|\\)") {
-            let range = NSMakeRange(0, cleanedNumber.characters.count)
-            cleanedNumber = regex.stringByReplacingMatches(in: cleanedNumber, options: [], range: range, withTemplate: "")
-        }
+        let cleanedNumber = phoneNumber.cleanPhoneNumber()
         
         user.setValue(name, forKey: CoreDateConstants.name)
         user.setValue(cleanedNumber, forKey: CoreDateConstants.phoneNumber)
@@ -104,4 +113,9 @@ struct HiveUser {
         
         return user
     }
+    
+    static func ==(lhs: HiveUser, rhs: HiveUser) -> Bool {
+        return lhs.phoneNumber == rhs.phoneNumber
+    }
+
 }

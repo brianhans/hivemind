@@ -17,7 +17,7 @@ class ContactsTableViewCell: UITableViewCell {
     
     lazy var checkBoxImage: UIImageView = {
         var imageView = UIImageView(image: #imageLiteral(resourceName: "Add"))
-        imageView.tintColor = UIColor.blue
+        imageView.tintColor = UIColor.goldenTainoi
         return imageView
     }()
     
@@ -53,12 +53,28 @@ class ContactsTableViewCell: UITableViewCell {
         self.nameLabel.text = name
     }
     
-    func setChecked(_ checked: Bool) {
-        if checked {
-            checkBoxImage.image = #imageLiteral(resourceName: "Checked")
-        } else {
-            checkBoxImage.image =  #imageLiteral(resourceName: "Add")
+    func setChecked(_ checked: Bool, animated: Bool = true) {
+        func check() {
+            if checked {
+                self.checkBoxImage.image = #imageLiteral(resourceName: "Checked")
+                self.checkBoxImage.tintColor = UIColor.darkOrange
+            } else {
+                self.checkBoxImage.image =  #imageLiteral(resourceName: "Add")
+                self.checkBoxImage.tintColor = UIColor.goldenTainoi
+            }
         }
+        
+        if animated {
+            UIView.animate(withDuration: 0.3) {
+                check()
+            }
+        } else {
+            check()
+        }
+    }
+    
+    override func prepareForReuse() {
+        setChecked(false, animated: false)
     }
     
 }
