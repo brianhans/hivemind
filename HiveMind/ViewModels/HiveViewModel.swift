@@ -18,13 +18,15 @@ class HiveViewModel {
     }
     
     func updateHive(completion: @escaping (Hive?) -> Void) {
-        HiveProvider.getHive(id: hive.id) { (hive, error) in
+        signal = hive.signal
+        HiveProvider.getHive(id: hive.id) { [weak self] (hive, error) in
             if let error = error {
                 print(error)
             }
             
             if let hive = hive {
-                self.hive.users = hive.users
+                self?.hive.users = hive.users
+                hive.signal = self?.signal
                 return completion(hive)
             }
             

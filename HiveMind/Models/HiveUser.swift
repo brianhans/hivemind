@@ -14,9 +14,9 @@ struct HiveUser {
     let name: String
     let phoneNumber: String
     let picture: UIImage?
-    var status: String?
+    var status: Int
     
-    init(name: String, phoneNumber: String, picture: UIImage?, status: String?) {
+    init(name: String, phoneNumber: String, picture: UIImage?, status: Int = 0) {
         self.name = name
         self.phoneNumber = phoneNumber
         self.picture = picture
@@ -45,7 +45,8 @@ struct HiveUser {
             return nil
         }
 
-        
+        let statusString = json[Constants.lastResponse].string ?? ""
+        self.status = Int(statusString) ?? 0
     }
     
     init(coreDataObject: NSManagedObject) {
@@ -57,7 +58,7 @@ struct HiveUser {
             self.picture = nil
         }
         
-        self.status = coreDataObject.value(forKey: CoreDateConstants.status) as? String ?? ""
+        self.status = coreDataObject.value(forKey: CoreDateConstants.status) as? Int ?? 0
     }
     
     func getCoreDataObject() -> NSManagedObject? {

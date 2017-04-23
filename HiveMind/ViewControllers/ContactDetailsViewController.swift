@@ -173,7 +173,7 @@ class ContactDetailsViewController: UIViewController {
     func populateLabels(){
         self.nameLabel.text = user.name
         //TODO: get the actual status that was sent off
-        self.latestResponseLabel.text = user.status
+        self.latestResponseLabel.text = "\(user.status)"
     }
     
     func close() {

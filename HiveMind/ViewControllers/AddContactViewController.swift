@@ -181,7 +181,7 @@ class AddContactViewController: UIViewController {
                 image = UIImage(data: imageData)
             }
             
-            hiveContacts.append(HiveUser(name: "\(contact.givenName) \(contact.familyName)", phoneNumber: contact.phoneNumbers[0].value.stringValue, picture: image, status: nil))
+            hiveContacts.append(HiveUser(name: "\(contact.givenName) \(contact.familyName)", phoneNumber: contact.phoneNumbers[0].value.stringValue, picture: image))
         }
         
         completion?(hiveContacts)
