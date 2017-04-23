@@ -85,9 +85,9 @@ class HiveViewController: UIViewController {
         self.view.addSubview(signalButton)
         
         signalButton.snp.makeConstraints { (make) in
-            make.width.equalTo(UIScreen.main.bounds.width * 0.9)
+            make.width.equalTo(200)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview().offset(-15)
             make.height.equalTo(50)
         }
         
@@ -149,7 +149,7 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         let user = viewModel.hive.users[indexPath.item - 1]
-        cell.setup(user: user, color: viewModel.signal?.statusColors[user.status ?? "unknown"] ?? .yellow)
+        cell.setup(user: user, color: viewModel.signal?.statusColors[user.status ?? "unknown"] ?? .goldenTainoi)
         return cell
     }
     

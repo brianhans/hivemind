@@ -30,7 +30,7 @@ class SignalViewController: UIViewController {
         let button = UIButton()
         button.addTarget(self, action: #selector(sendSignal), for: .touchUpInside)
         button.setTitle("Send", for: .normal)
-        button.backgroundColor = UIColor.goldenTainoi
+        button.backgroundColor = UIColor.darkOrange
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
         return button
@@ -142,7 +142,7 @@ class SignalViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
             make.width.equalTo(200)
-            make.bottom.equalToSuperview().offset(-50)
+            make.bottom.equalToSuperview().offset(-15)
         }
         
         cancelButton.snp.makeConstraints { (make) in

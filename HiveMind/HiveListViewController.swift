@@ -23,14 +23,12 @@ class HiveListViewController: UIViewController {
         
         let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
         cv.backgroundColor = .white
-
         
-        
+        cv.alwaysBounceVertical = true
         cv.delegate = self
         cv.dataSource = self
         
         return cv
-        
     }()
     
     lazy var addButton: UIBarButtonItem = {
@@ -43,8 +41,7 @@ class HiveListViewController: UIViewController {
         let label = UILabel()
         
         label.text = "Hives"
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir", size: 40)
+        label.font = UIFont(name: ".SFUIText-Heavy", size: 72)
         label.backgroundColor = .white
         return label
         
@@ -55,17 +52,14 @@ class HiveListViewController: UIViewController {
 
 //        self.navigationItem.title = "Hives"
 //        self.navigationItem.rightBarButtonItem = addButton
-        
+        self.view.backgroundColor = UIColor.white
         self.view.addSubview(topLabel)
         self.view.addSubview(collectionView)
         
         topLabel.snp.makeConstraints { (make) in
-            
-            make.top.equalToSuperview().offset(20)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(60)
+            make.top.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width)
-            
         }
         
         collectionView.snp.makeConstraints { (make) in
@@ -156,7 +150,7 @@ extension HiveListViewController: UICollectionViewDataSource, UICollectionViewDe
         var height: CGFloat = 100
         
         if indexPath.row == 0 {
-            height = 40
+            height = 60
         }
 
         return CGSize(width: width, height: height)

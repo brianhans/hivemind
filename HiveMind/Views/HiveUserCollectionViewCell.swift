@@ -14,6 +14,7 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
         var label = UILabel()
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 50)
         return label
     }()
@@ -31,7 +32,7 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
         self.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview().offset(-10)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview()
         }
@@ -45,7 +46,7 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
     
     func setupFirst(){
         self.titleLabel.text = "+"
-        self.backgroundColor = .yellow
+        self.backgroundColor = .darkOrange
     }
     
     override func layoutSubviews() {

@@ -42,7 +42,7 @@ class AddContactViewController: UIViewController {
         
         label.text = "Contacts"
         label.textAlignment = .center
-        label.font = UIFont(name: "Avenir", size: 40)
+        label.font = UIFont(name: ".SFUIText-Heavy", size: 40)
         label.backgroundColor = .white
         return label
         

@@ -40,21 +40,21 @@ class HiveListCollectionViewCell: UICollectionViewCell {
 
     func setup(hive: Hive) {
         self.titleLabel.text = hive.name
-        self.titleLabel.font = UIFont(name: "Avenir", size: 36)
+        self.titleLabel.font = UIFont(name: ".SFUIText", size: 36)
 
         self.backgroundColor = UIColor.darkOrange
     }
     
     func setupFirst(){
         self.titleLabel.text = "+ New Hive"
-        self.backgroundColor = UIColor.blue
+        self.titleLabel.font = UIFont(name: ".SFUIText", size: 36)
+        self.backgroundColor = UIColor.goldenTainoi
     }
     
    
     // sets height cell to fit content
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         super.preferredLayoutAttributesFitting(layoutAttributes)
-        
         
         let attr = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
         
