@@ -57,8 +57,8 @@ class SignalViewController: UIViewController {
         view.colorButton.addSubview(plusImage)
         
         plusImage.snp.makeConstraints({ (make) in
-            make.top.left.equalToSuperview().offset(10)
-            make.right.bottom.equalToSuperview().offset(-10)
+            make.top.left.equalToSuperview().offset(20)
+            make.right.bottom.equalToSuperview().offset(-20)
         })
         
         return view
@@ -130,7 +130,7 @@ class SignalViewController: UIViewController {
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.centerY.equalToSuperview()
-            make.height.equalTo(180 + (15 * 3))
+            make.height.equalTo(180 + (25 * 3))
         }
     }
     

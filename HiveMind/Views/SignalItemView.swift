@@ -36,7 +36,7 @@ class SignalItemView: UIView {
         
         colorButton.snp.makeConstraints { (make) in
             make.left.equalToSuperview()
-            make.height.width.equalTo(50)
+            make.height.width.equalTo(60)
             make.centerY.equalToSuperview()
         }
         

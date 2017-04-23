@@ -18,20 +18,26 @@ class AddHiveViewController: UIViewController {
     
     lazy var inputField: UITextField = {
         let textField = UIPaddedTextField()
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
-        textField.layer.cornerRadius = 5
-        
+        textField.tintColor = UIColor.white
+        textField.textColor = UIColor.white
         return textField
     }()
     
     lazy var exitButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
-        button.contentMode = .scaleAspectFit
-        button.tintColor = UIColor.blue
+        let button = UIButton(type: .custom)
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "close"))
+        imageView.tintColor = .darkOrange
+        imageView.contentMode = .scaleAspectFit
+        button.addSubview(imageView)
+        button.tintColor = UIColor.darkOrange
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(close), for: .touchUpInside)
+        
+        imageView.snp.makeConstraints({ (make) in
+            make.top.left.equalToSuperview().offset(5)
+            make.right.bottom.equalToSuperview().offset(-5)
+        })
+        
         return button
     }()
     
@@ -39,6 +45,8 @@ class AddHiveViewController: UIViewController {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.font = UIFont(name: ".SFUIText-Heavy", size: 24)
+
         label.text = "Name the Hive"
         return label
     }()
@@ -46,10 +54,17 @@ class AddHiveViewController: UIViewController {
     lazy var addButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(UIColor.blue, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.addTarget(self, action: #selector(addHive), for: .touchUpInside)
         button.setTitle("Add", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: button.titleLabel?.font.pointSize ?? 12)
         return button
+    }()
+    
+    lazy var bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .darkOrange
+        return view
     }()
     
     lazy var backgroundView: UIView = {
@@ -67,6 +82,7 @@ class AddHiveViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        inputField.becomeFirstResponder()
     }
     
     func setupViews() {
@@ -86,35 +102,50 @@ class AddHiveViewController: UIViewController {
         backgroundView.snp.makeConstraints { (make) in
             make.centerX.centerY.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.7)
+            make.height.equalTo(150)
         }
         
+        let topView = UIView()
+        
+        backgroundView.addSubview(topView)
+        backgroundView.addSubview(bottomView)
+        bottomView.addSubview(addButton)
+        bottomView.addSubview(inputField)
+        
         backgroundView.addSubview(exitButton)
-        backgroundView.addSubview(inputField)
-        backgroundView.addSubview(addButton)
-        backgroundView.addSubview(titleLabel)
+        topView.addSubview(titleLabel)
+        
+        topView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(bottomView.snp.top)
+        }
         
         exitButton.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().offset(10)
-            make.bottom.equalTo(titleLabel.snp.bottom)
+            make.height.width.equalTo(30)
         }
         
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(exitButton.snp.top)
+            make.centerY.equalToSuperview().offset(10)
             make.left.equalToSuperview().offset(10)
             make.right.equalToSuperview().offset(-10)
         }
         
         inputField.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
-            make.height.equalTo(30)
+            make.right.equalTo(addButton.snp.left).offset(-10)
+            make.top.bottom.equalToSuperview()
         }
         
         addButton.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(inputField.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-20)
+        }
+        
+        bottomView.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.3)
         }
     }
     
