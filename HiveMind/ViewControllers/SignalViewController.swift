@@ -10,7 +10,7 @@ import UIKit
 
 class SignalViewController: UIViewController {
 
-    var colors: [UIColor] = [.brightGreen, .goldenTainoi, .dullRed]
+    var colors: [UIColor] = [.brightGreen, .dullRed, .craterBrown]
     
     lazy var navigationBar: UINavigationBar = {
         let bar = UINavigationBar()
@@ -138,19 +138,14 @@ class SignalViewController: UIViewController {
         var options: [String] = []
         var colors: [UIColor] = []
         for item in signalItemStackView.arrangedSubviews {
-            if let signialItem = item as? SignalItemView, let option = signialItem.signalTitleTextField.text {
+            if let signialItem = item as? SignalItemView, let option = signialItem.signalTitleTextField.text, !option.isEmpty {
                 options.append(option)
                 colors.append(signialItem.colorButton.backgroundColor!)
             }
         }
         
         if let title = titleTextField.text, !title.isEmpty {
-            var colorDict: [String: UIColor] = [:]
-            for i in 0..<options.count {
-                colorDict[options[i]] = colors[i]
-            }
-           
-            let newSignal = Signal(title: title, options: options, statusColors: colorDict)
+            let newSignal = Signal(title: title, options: options, statusColors: colors)
             completion?(newSignal)
         }
         dismiss(animated: true, completion: nil)

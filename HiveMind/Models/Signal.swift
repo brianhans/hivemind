@@ -12,9 +12,9 @@ import CoreData
 struct Signal {
     var title: String
     var options: [String] = []
-    var statusColors: [String: UIColor]
+    var statusColors: [UIColor]
     
-    init(title: String, options: [String], statusColors: [String: UIColor]) {
+    init(title: String, options: [String], statusColors: [UIColor]) {
         self.title = title
         self.options = options
         self.statusColors = statusColors
@@ -23,7 +23,7 @@ struct Signal {
     init?(coreDataObject: NSManagedObject) {
         self.title = coreDataObject.value(forKey: CoreDateConstants.title) as? String ?? ""
         self.options = coreDataObject.value(forKey: CoreDateConstants.options) as? [String] ?? []
-        self.statusColors = coreDataObject.value(forKey: CoreDateConstants.statusColors) as? [String: UIColor] ?? [:]
+        self.statusColors = coreDataObject.value(forKey: CoreDateConstants.statusColors) as? [UIColor] ?? []
     }
     
     

@@ -13,8 +13,8 @@ class ContactDetailsViewController: UIViewController {
 
     //TODO: abstract into a viewModel
     
-    var user: HiveUser!
-    
+    var user: HiveUser
+    var signal: Signal?
 
     lazy var exitButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -106,6 +106,16 @@ class ContactDetailsViewController: UIViewController {
     
     }()
     
+    init(signal: Signal?, user: HiveUser) {
+        self.user = user
+        self.signal = signal
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func setupViews(){
         
@@ -174,8 +184,12 @@ class ContactDetailsViewController: UIViewController {
     
     func populateLabels(){
         self.nameLabel.text = user.name
-        //TODO: get the actual status that was sent off
-        self.latestResponseLabel.text = user.status
+        
+        if let signal = signal, user.status > 0 && user.status < signal.options.count {
+            self.latestResponseLabel.text = signal.options[user.status - 1]
+        } else {
+            self.latestResponseLabel.text = ""
+        }
     }
     
     func callNumber(){

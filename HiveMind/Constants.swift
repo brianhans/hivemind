@@ -29,6 +29,8 @@ struct Constants {
     static let commnd = "command"
     static let options = "options"
     static let text = "text"
+    
+    static let lastResponse = "last_response"
 }
 
 struct CoreDateConstants {

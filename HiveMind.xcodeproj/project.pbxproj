@@ -33,6 +33,7 @@
 		D35694611EA4534300875CF0 /* HiveUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694601EA4534300875CF0 /* HiveUserCollectionViewCell.swift */; };
 		D35694631EA455F400875CF0 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694621EA455F400875CF0 /* AddContactViewController.swift */; };
 		D35694651EA4789700875CF0 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694641EA4789700875CF0 /* ContactsTableViewCell.swift */; };
+		D365BE3D1EAD641E00C9F8CD /* String+Clean.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365BE3C1EAD641E00C9F8CD /* String+Clean.swift */; };
 		D36C0C011EAA75E100F00E58 /* Hive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D36C0BFF1EAA75E100F00E58 /* Hive.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		D35694601EA4534300875CF0 /* HiveUserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		D35694621EA455F400875CF0 /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		D35694641EA4789700875CF0 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		D365BE3C1EAD641E00C9F8CD /* String+Clean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Clean.swift"; sourceTree = "<group>"; };
 		D36C0C001EAA75E100F00E58 /* Hive.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hive.xcdatamodel; sourceTree = "<group>"; };
 		D3A45E96FC8093DB16AA172F /* Pods-HiveMind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiveMind.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 			children = (
 				D34D064E1EA810780055F99F /* UIColor+HexInit.swift */,
 				D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */,
+				D365BE3C1EAD641E00C9F8CD /* String+Clean.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				D34D06531EA82EAE0055F99F /* Router.swift in Sources */,
 				D35694591EA444AD00875CF0 /* HiveViewController.swift in Sources */,
 				D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */,
+				D365BE3D1EAD641E00C9F8CD /* String+Clean.swift in Sources */,
 				BD4048BD1EAD267900EF2356 /* ContactDetailsViewController.swift in Sources */,
 				D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */,
 				D36C0C011EAA75E100F00E58 /* Hive.xcdatamodeld in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 
 class ColorPickerController: UIViewController {
 
-    var colors: [UIColor] = [.brightGreen, .goldenTainoi, .dullRed, .cyan, .purple, .yellow]
+    var colors: [UIColor] = [.brightGreen, .dullRed, .craterBrown, .cyan, .purple, .yellow]
     
     lazy var backgroundView: UIView = {
         let view = UIView()

@@ -40,7 +40,7 @@ class HiveViewController: UIViewController {
     }()
     
     lazy var addButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.showSignalView))
+        let button = UIBarButtonItem(title: "Signal", style: .plain, target: self, action: #selector(self.showSignalView))
         return button
     }()
     
@@ -110,8 +110,7 @@ class HiveViewController: UIViewController {
     }
     
     func showContactDetails(user: HiveUser) {
-        let contactDetailsViewController = ContactDetailsViewController()
-        contactDetailsViewController.user = user
+        let contactDetailsViewController = ContactDetailsViewController(signal: viewModel.hive.signal, user: user)
         contactDetailsViewController.modalPresentationStyle = .overCurrentContext
         contactDetailsViewController.modalTransitionStyle = .crossDissolve
         self.present(contactDetailsViewController, animated: true, completion: nil)
@@ -143,7 +142,15 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         let user = viewModel.hive.users[indexPath.item - 1]
-        cell.setup(user: user, color: viewModel.signal?.statusColors[user.status ?? "unknown"] ?? .goldenTainoi)
+        var color: UIColor = .goldenTainoi
+        
+        if let colors = viewModel.signal?.statusColors {
+            if user.status > 0 && user.status < colors.count {
+                color = colors[user.status - 1]
+            }
+        }
+
+        cell.setup(user: user, color: color)
         return cell
     }
     

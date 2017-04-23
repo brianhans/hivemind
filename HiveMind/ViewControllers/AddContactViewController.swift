@@ -11,10 +11,9 @@ import Contacts
 
 class AddContactViewController: UIViewController {
 
-    var existingContacts: Set<String>
-    var checked: [CNContact] = []
-    var contacts: [CNContact] = []
-    var filteredContacts: [CNContact] = []
+    var checked: [HiveUser] = []
+    var contacts: [HiveUser] = []
+    var filteredContacts: [HiveUser] = []
     
     var contactStore: CNContactStore!
     
@@ -50,10 +49,7 @@ class AddContactViewController: UIViewController {
     var completion: (([HiveUser]) -> Void)?
     
     init(users: [HiveUser], completion: @escaping ([HiveUser]) -> Void) {
-        existingContacts = Set()
-        for user in users {
-            existingContacts.insert(user.phoneNumber)
-        }
+        checked = users
         
         self.completion = completion
         
@@ -112,10 +108,10 @@ class AddContactViewController: UIViewController {
     }
     
     func searchTextChanged() {
-        var contactsFound: [CNContact] = []
+        var contactsFound: [HiveUser] = []
         
         if let text = searchTextField.text {
-            contactsFound = contacts.filter({("\($0.givenName.lowercased()) \($0.familyName.lowercased())").contains(text.lowercased())})
+            contactsFound = contacts.filter({$0.name.lowercased().contains(text.lowercased())})
         }
         
         self.filteredContacts = contactsFound
@@ -130,12 +126,7 @@ class AddContactViewController: UIViewController {
                 
                 let predicate = CNContact.predicateForContactsInContainer(withIdentifier: self.contactStore.defaultContainerIdentifier())
                 if let contacts = try? self.contactStore.unifiedContacts(matching: predicate, keysToFetch: keys) {
-                    self.contacts = contacts
-                    for contact in contacts {
-                        if self.existingContacts.contains(contact.phoneNumbers[0].value.stringValue) {
-                            self.checked.append(contact)
-                        }
-                    }
+                    self.contacts = contacts.map(HiveUser.init)
                     self.tableView.reloadData()
                 }
             } else {
@@ -173,25 +164,14 @@ class AddContactViewController: UIViewController {
     }
     
     func close() {
-    
-        var hiveContacts: [HiveUser] = []
-        for contact in checked {
-            var image: UIImage? = nil
-            if let imageData = contact.imageData {
-                image = UIImage(data: imageData)
-            }
-            
-            hiveContacts.append(HiveUser(name: "\(contact.givenName) \(contact.familyName)", phoneNumber: contact.phoneNumbers[0].value.stringValue, picture: image, status: nil))
-        }
-        
-        completion?(hiveContacts)
+        completion?(checked)
         self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func getDataSource() -> [CNContact]{
+    func getDataSource() -> [HiveUser]{
         if let text = self.searchTextField.text{
             if text.characters.count > 0{
                 return filteredContacts
@@ -213,7 +193,12 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.contactsTableViewCell) as! ContactsTableViewCell
         let dataSource = getDataSource()
-        cell.setup(name: "\(dataSource[indexPath.row].givenName) \(dataSource[indexPath.row].familyName)")
+        cell.setup(name: dataSource[indexPath.row].name)
+        
+        if checked.contains(dataSource[indexPath.row]) {
+            cell.setChecked(true)
+        }
+        
         return cell
     }
     
@@ -222,7 +207,6 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
         
         row.setSelected(false, animated: true)
         let dataSource = getDataSource()
-        
         
         
         if let index = checked.index(of: dataSource[indexPath.row]) {
