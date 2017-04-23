@@ -75,7 +75,12 @@ class AddHiveViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(close))
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
-                
+        
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.tintColor = UIColor.darkOrange
+        
         self.view.addSubview(backgroundView)
         
         backgroundView.snp.makeConstraints { (make) in
@@ -109,7 +114,7 @@ class AddHiveViewController: UIViewController {
         addButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(inputField.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
     

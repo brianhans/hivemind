@@ -17,25 +17,6 @@ class SignalViewController: UIViewController {
         return bar
     }()
     
-    lazy var cancelButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.white
-        button.setTitle("X", for: .normal)
-        button.backgroundColor = UIColor.blue
-        button.addTarget(self, action: #selector(close), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var sendButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(sendSignal), for: .touchUpInside)
-        button.setTitle("Send", for: .normal)
-        button.backgroundColor = UIColor.darkOrange
-        button.layer.cornerRadius = 5
-        button.clipsToBounds = true
-        return button
-    }()
-    
     lazy var signalItemStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -43,12 +24,24 @@ class SignalViewController: UIViewController {
         return stack
     }()
     
-    lazy var titleTextField: UITextField = {
-        let textField = UITextField()
+    lazy var titleTextField: UITextView = {
+        let textField = UITextView()
         textField.backgroundColor = UIColor.clear
         textField.font = UIFont(name: ".SFUIText-Heavy", size: 40)!
-        textField.placeholder = "Enter title"
+        textField.delegate = self
+        textField.text = "Enter Title"
+        textField.textColor = UIColor.lightGray
         return textField
+    }()
+    
+    lazy var cancelButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(close))
+        return button
+    }()
+    
+    lazy var sendlButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendSignal))
+        return button
     }()
     
     lazy var addField: SignalItemView = {
@@ -91,69 +84,54 @@ class SignalViewController: UIViewController {
     }
     
     func setupViews() {
-//        self.navigationItem.title = "New Signal"
-//        self.navigationItem.rightBarButtonItem = cancelButton
+        self.navigationItem.title = ""
+        self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.rightBarButtonItem = sendlButton
         
         self.view.backgroundColor = UIColor.white
         
         let signalItem = SignalItemView(frame: .zero, color: colors[0])
         
+        navigationBar.backgroundColor = UIColor.clear
+        navigationBar.isTranslucent = true
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.tintColor = UIColor.darkOrange
+        
         navigationBar.pushItem(self.navigationItem, animated: false)
         
         self.view.addSubview(navigationBar)
         self.view.addSubview(contentView)
-        self.view.addSubview(cancelButton)
-        self.contentView.addSubview(sendButton)
         self.contentView.addSubview(titleTextField)
         self.contentView.addSubview(signalItemStackView)
         signalItemStackView.addArrangedSubview(signalItem)
         signalItem.colorButton.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
         signalItemStackView.addArrangedSubview(addField)
         
-        
-        navigationBar.isHidden = true
-        
-//        navigationBar.snp.makeConstraints { (make) in
-//            make.top.left.right.equalToSuperview()
-//            make.height.equalTo(64)
-//        }
-        
+
+        navigationBar.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(64)
+        }
         
         
         contentView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
+            make.top.equalTo(navigationBar.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
         
         titleTextField.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)
-            make.right.equalTo(cancelButton.snp.left).offset(-10)
-            make.top.equalToSuperview().offset(20)
-            make.height.equalTo(100)
+            make.right.equalToSuperview()
+            make.top.equalTo(navigationBar.snp.bottom).offset(20)
+            make.bottom.equalTo(signalItemStackView.snp.top).offset(-20)
         }
         
         signalItemStackView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
-            make.top.equalTo(titleTextField.snp.bottom).offset(20)
+            make.centerY.equalToSuperview()
             make.height.equalTo(180 + (15 * 3))
         }
-        
-        sendButton.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.height.equalTo(50)
-            make.width.equalTo(200)
-            make.bottom.equalToSuperview().offset(-15)
-        }
-        
-        cancelButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(titleTextField)
-            make.right.equalToSuperview().offset(-8)
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-            
-        }
-        
     }
     
     func sendSignal() {
@@ -202,5 +180,21 @@ class SignalViewController: UIViewController {
     
     func close() {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignalViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Enter Title"
+            textView.textColor = UIColor.lightGray
+        }
     }
 }

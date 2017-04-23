@@ -27,39 +27,13 @@ class AddContactViewController: UIViewController {
         return tableView
     }()
     
-    lazy var cancelButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.white
-        button.setTitle("X", for: .normal)
-        button.backgroundColor = UIColor.blue
-        button.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        return button
-    }()
-    
-    
-    lazy var topLabel: UILabel = {
-        let label = UILabel()
-        
-        label.text = "Contacts"
-        label.font = UIFont(name: ".SFUIText-Heavy", size: 60)
-        label.backgroundColor = .white
-        return label
-        
-    }()
-    
-    
     lazy var navigationBar: UINavigationBar = {
         let bar = UINavigationBar()
         return bar
     }()
     
-    
-    lazy var doneButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Done", for: .normal)
-        button.addTarget(self, action: #selector(self.close), for: .touchUpInside)
-        button.backgroundColor = UIColor.darkOrange
-        button.layer.cornerRadius = 10
+    lazy var doneButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.close))
         return button
     }()
     
@@ -104,37 +78,22 @@ class AddContactViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.white
         
+        self.navigationItem.title = "Contacts"
+        self.navigationItem.rightBarButtonItem = doneButton
+        
+        navigationBar.backgroundColor = UIColor.clear
+        navigationBar.isTranslucent = true
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.tintColor = UIColor.darkOrange
+        
         navigationBar.pushItem(self.navigationItem, animated: false)
         
-//        self.view.addSubview(navigationBar)
+        self.view.addSubview(navigationBar)
         self.view.addSubview(tableView)
         self.view.addSubview(searchTextField)
-        self.view.addSubview(topLabel)
-        self.view.addSubview(cancelButton)
-        self.view.addSubview(doneButton)
-        
-        
-        
-        
-        doneButton.snp.makeConstraints { (make) in
-            
-            make.bottom.equalToSuperview().offset(-8)
-            make.width.equalTo(200)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(50)
-        }
-        
-        topLabel.snp.makeConstraints{ (make) in
-            
-            make.right.equalToSuperview()
-            make.top.equalToSuperview().offset(40)
-            make.left.equalToSuperview().offset(20)
-            make.height.equalTo(60)
-            
-        }
         
         searchTextField.snp.makeConstraints{ (make) in
-            make.top.equalTo(topLabel.snp.bottom).offset(20)
+            make.top.equalTo(navigationBar.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
             make.height.equalTo(35)
@@ -143,15 +102,12 @@ class AddContactViewController: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(searchTextField.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(doneButton.snp.top).offset(-10)
+            make.bottom.equalToSuperview()
         }
         
-        cancelButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(topLabel)
-            make.right.equalToSuperview().offset(-8)
-            make.height.equalTo(30)
-            make.width.equalTo(30)
-            
+        navigationBar.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(64)
         }
     }
     
@@ -281,7 +237,11 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AddContactViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.characters.count == 0 {
+        let textLength = self.searchTextField.text?.characters.count ?? 0
+        
+        let textRange = NSRange(Range(uncheckedBounds: (0, textLength)))
+        
+        if NSEqualRanges(textRange, range) && string.characters.count == 0 {
             textField.textAlignment = .center
         } else {
             textField.textAlignment = .left

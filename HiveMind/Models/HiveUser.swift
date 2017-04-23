@@ -81,7 +81,7 @@ struct HiveUser {
         }
         
         var cleanedNumber = phoneNumber
-        if let regex = try? NSRegularExpression(pattern: " |\\(|\\)|-") {
+        if let regex = try? NSRegularExpression(pattern: "-|\\s|\\(|\\)") {
             let range = NSMakeRange(0, cleanedNumber.characters.count)
             cleanedNumber = regex.stringByReplacingMatches(in: cleanedNumber, options: [], range: range, withTemplate: "")
         }

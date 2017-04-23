@@ -33,19 +33,15 @@ class HiveViewController: UIViewController {
         return cv
     }()
     
-    lazy var signalButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Signal", for: .normal)
-        button.addTarget(self, action: #selector(self.showSignalView), for: .touchUpInside)
-        button.backgroundColor = UIColor.darkOrange
-        button.layer.cornerRadius = 10
-        return button
-    }()
-    
     lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(updateHive), for: .valueChanged)
         return refresh
+    }()
+    
+    lazy var addButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.showSignalView))
+        return button
     }()
     
     
@@ -73,28 +69,18 @@ class HiveViewController: UIViewController {
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.darkOrange
         
         self.navigationItem.title = viewModel.hive.name
+        self.navigationItem.rightBarButtonItem = addButton
         
         self.view.backgroundColor = UIColor.white
         
         self.view.addSubview(collectionView)
-        self.view.addSubview(signalButton)
-        
-        signalButton.snp.makeConstraints { (make) in
-            make.width.equalTo(200)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-15)
-            make.height.equalTo(50)
-        }
-        
 
         collectionView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(20)
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(signalButton.snp.top)
+            make.left.right.bottom.equalToSuperview()
         }
     }
     
