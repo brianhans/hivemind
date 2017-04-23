@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81E0B4C1D66BA50C43808816 /* Pods_HiveMind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCE9B9F01A9CE1206AF87E5 /* Pods_HiveMind.framework */; };
+		BD4048BD1EAD267900EF2356 /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4048BC1EAD267900EF2356 /* ContactDetailsViewController.swift */; };
 		D3185D1A1EA6D80700DA7C7F /* SignalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3185D191EA6D80700DA7C7F /* SignalViewController.swift */; };
 		D3185D1C1EA6F64E00DA7C7F /* SignalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */; };
 		D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064B1EA803AF0055F99F /* ColorPickerController.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		3FCE9B9F01A9CE1206AF87E5 /* Pods_HiveMind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HiveMind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE6FECD2D622B45CB6D0F96 /* Pods-HiveMind.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiveMind.release.xcconfig"; path = "Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind.release.xcconfig"; sourceTree = "<group>"; };
+		BD4048BC1EAD267900EF2356 /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
 		D3185D191EA6D80700DA7C7F /* SignalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalViewController.swift; sourceTree = "<group>"; };
 		D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalItemView.swift; sourceTree = "<group>"; };
 		D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiveMind-BridgingHeader.h"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				D35694351EA412BC00875CF0 /* HiveListViewController.swift */,
+				BD4048BC1EAD267900EF2356 /* ContactDetailsViewController.swift */,
 				D35694581EA444AD00875CF0 /* HiveViewController.swift */,
 				D356945C1EA446F900875CF0 /* AddHiveViewController.swift */,
 				D35694621EA455F400875CF0 /* AddContactViewController.swift */,
@@ -335,6 +338,7 @@
 				D34D06531EA82EAE0055F99F /* Router.swift in Sources */,
 				D35694591EA444AD00875CF0 /* HiveViewController.swift in Sources */,
 				D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */,
+				BD4048BD1EAD267900EF2356 /* ContactDetailsViewController.swift in Sources */,
 				D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */,
 				D36C0C011EAA75E100F00E58 /* Hive.xcdatamodeld in Sources */,
 				D35694611EA4534300875CF0 /* HiveUserCollectionViewCell.swift in Sources */,
