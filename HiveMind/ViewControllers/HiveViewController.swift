@@ -110,8 +110,7 @@ class HiveViewController: UIViewController {
     }
     
     func showContactDetails(user: HiveUser) {
-        let contactDetailsViewController = ContactDetailsViewController()
-        contactDetailsViewController.user = user
+        let contactDetailsViewController = ContactDetailsViewController(signal: viewModel.hive.signal, user: user)
         contactDetailsViewController.modalPresentationStyle = .overCurrentContext
         contactDetailsViewController.modalTransitionStyle = .crossDissolve
         self.present(contactDetailsViewController, animated: true, completion: nil)
