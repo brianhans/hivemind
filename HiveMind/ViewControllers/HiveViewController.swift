@@ -109,6 +109,14 @@ class HiveViewController: UIViewController {
         present(signalVC, animated: true, completion: nil)
     }
     
+    func showContactDetails(user: HiveUser) {
+        let contactDetailsViewController = ContactDetailsViewController()
+        contactDetailsViewController.user = user
+        contactDetailsViewController.modalPresentationStyle = .overCurrentContext
+        contactDetailsViewController.modalTransitionStyle = .crossDissolve
+        self.present(contactDetailsViewController, animated: true, completion: nil)
+    }
+    
     func updateHive() {
         viewModel.updateHive { _ in
             self.collectionView.reloadData()
@@ -148,6 +156,10 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if indexPath.row == 0{
             self.showAddView()
+        }
+        
+        else{
+            showContactDetails(user: viewModel.hive.users[indexPath.row - 1])
         }
         
     }

@@ -10,19 +10,11 @@ import UIKit
 
 class ContactDetailsViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    //TODO: abstract into a viewModel
     
+    var user: HiveUser!
+    
+
     lazy var exitButton: UIButton = {
         let button = UIButton(type: .custom)
         let imageView = UIImageView(image: #imageLiteral(resourceName: "close"))
@@ -122,10 +114,20 @@ class ContactDetailsViewController: UIViewController {
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
         
+        view.addSubview(backgroundView)
+        backgroundView.addSubview(nameLabel)
+        backgroundView.addSubview(exitButton)
+        backgroundView.addSubview(latestResponseHeaderLabel)
+        backgroundView.addSubview(latestResponseLabel)
+        backgroundView.addSubview(callButton)
+        backgroundView.addSubview(textButton)
+        
+        
+        
         backgroundView.snp.makeConstraints { (make) in
             make.centerX.centerY.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.height.equalTo(300)
+            make.height.equalTo(200)
         }
         
         
@@ -165,8 +167,13 @@ class ContactDetailsViewController: UIViewController {
             make.left.equalTo(callButton.snp.right).offset(4)
             make.width.equalTo(40)
             make.height.equalTo(40)
-        
         }
+    }
+    
+    func populateLabels(){
+        self.nameLabel.text = user.name
+        //TODO: get the actual status that was sent off
+        self.latestResponseLabel.text = user.status
     }
     
     func close() {
@@ -176,6 +183,25 @@ class ContactDetailsViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }
     }
+}
+
+
+extension ContactDetailsViewController {
+   
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        populateLabels()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
 }
 
 
