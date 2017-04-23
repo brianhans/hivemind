@@ -26,7 +26,7 @@ class SignalViewController: UIViewController {
         let button = UIButton()
         button.addTarget(self, action: #selector(sendSignal), for: .touchUpInside)
         button.setTitle("Send", for: .normal)
-        button.backgroundColor = UIColor.blue
+        button.backgroundColor = UIColor.goldenTainoi
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
         return button
@@ -42,17 +42,27 @@ class SignalViewController: UIViewController {
     lazy var titleTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = UIColor.clear
-        textField.font = UIFont.systemFont(ofSize: 40)
+        textField.font = UIFont(name: ".SFUIText-Heavy", size: 40)!
         textField.placeholder = "Enter title"
         return textField
     }()
     
-    lazy var addField: UIButton = {
-        let view = UIButton()
-        view.addTarget(self, action: #selector(addInputField), for: .touchUpInside)
-        view.backgroundColor = .clear
-        view.setTitleColor(.black, for: .normal)
-        view.setTitle("+ Add Field", for: .normal)
+    lazy var addField: SignalItemView = {
+        let view = SignalItemView(frame: .zero, color: .lightGray)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addInputField))
+        view.addGestureRecognizer(tapGesture)
+        view.signalTitleTextField.isUserInteractionEnabled = false
+        view.signalTitleTextField.placeholder = "Add Option"
+        let plusImage = UIImageView(image: #imageLiteral(resourceName: "Plus"))
+        plusImage.contentMode = .scaleAspectFit
+
+
+        view.colorButton.addSubview(plusImage)
+        
+        plusImage.snp.makeConstraints({ (make) in
+            make.top.left.equalToSuperview().offset(10)
+            make.right.bottom.equalToSuperview().offset(-10)
+        })
         
         return view
     }()
@@ -105,7 +115,7 @@ class SignalViewController: UIViewController {
         }
         
         titleTextField.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
             make.top.equalToSuperview().offset(20)
             make.height.equalTo(100)
         }
@@ -120,8 +130,7 @@ class SignalViewController: UIViewController {
         sendButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
-            make.left.equalToSuperview().offset(50)
-            make.right.equalToSuperview().offset(-50)
+            make.width.equalTo(200)
             make.bottom.equalToSuperview().offset(-50)
         }
     }
