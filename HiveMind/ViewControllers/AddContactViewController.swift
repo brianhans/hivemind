@@ -95,6 +95,8 @@ class AddContactViewController: UIViewController {
 
         setupViews()
         getContacts()
+        
+        searchTextField.addTarget(self, action: #selector(searchTextChanged), for: .editingChanged)
     }
     
     func setupViews() {
@@ -114,7 +116,7 @@ class AddContactViewController: UIViewController {
         
         
         
-        cancelButton.snp.makeConstraints { (make) in
+        doneButton.snp.makeConstraints { (make) in
             
             make.bottom.equalToSuperview().offset(-8)
             make.left.equalToSuperview().offset(8)
@@ -153,6 +155,17 @@ class AddContactViewController: UIViewController {
         }
         
     
+    }
+    
+    func searchTextChanged() {
+        var contactsFound: [CNContact] = []
+        
+        if let text = searchTextField.text {
+            contactsFound = contacts.filter({("\($0.givenName.lowercased()) \($0.familyName.lowercased())").contains(text.lowercased())})
+        }
+        
+        self.filteredContacts = contactsFound
+        self.tableView.reloadData()
     }
     
     func getContacts() {
@@ -269,16 +282,7 @@ extension AddContactViewController: UITextFieldDelegate{
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        var contactsFound: [CNContact] = []
-
-        if let text = textField.text {
-            let updatedText = NSString(string: text).replacingCharacters(in: range, with: string)
-            contactsFound = contacts.filter({$0.givenName.lowercased().contains(updatedText.lowercased())})
-        }
-        
-        self.filteredContacts = contactsFound
-        self.tableView.reloadData()
+ 
         
         return true
         
