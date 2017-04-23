@@ -37,7 +37,8 @@ class HiveViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Signal", for: .normal)
         button.addTarget(self, action: #selector(self.showSignalView), for: .touchUpInside)
-        button.backgroundColor = UIColor.blue
+        button.backgroundColor = UIColor.darkOrange
+        button.layer.cornerRadius = 10
         return button
     }()
     
@@ -74,6 +75,7 @@ class HiveViewController: UIViewController {
         collectionView.register(HiveUserCollectionViewCell.self, forCellWithReuseIdentifier: Constants.hiveUserCollectionViewCell)
         collectionView.addSubview(refreshControl)
         
+        
         self.navigationItem.title = viewModel.hive.name
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -83,17 +85,21 @@ class HiveViewController: UIViewController {
         self.view.addSubview(signalButton)
         
         signalButton.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.width * 0.9)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-8)
             make.height.equalTo(50)
         }
         
-
-    
 
         collectionView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(signalButton.snp.top)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func showAddView() {
@@ -122,7 +128,7 @@ class HiveViewController: UIViewController {
             self.collectionView.reloadData()
             self.refreshControl.endRefreshing()
         }
-    }
+    } 
 }
 
 //MARK: Collection View
@@ -130,13 +136,19 @@ class HiveViewController: UIViewController {
 extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.hive.users.count
+        return viewModel.hive.users.count + 1
 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.hiveUserCollectionViewCell, for: indexPath) as! HiveUserCollectionViewCell
-        let user = viewModel.hive.users[indexPath.item]
+        
+        if indexPath.row == 0{
+            cell.setupFirst()
+            return cell
+        }
+        
+        let user = viewModel.hive.users[indexPath.item - 1]
         cell.setup(user: user, color: viewModel.signal?.statusColors[user.status ?? "unknown"] ?? .yellow)
         return cell
     }
@@ -144,5 +156,13 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = CGFloat((collectionView.frame.size.width / 3)) - 5
         return CGSize(width: height, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.row == 0{
+            self.showAddView()
+        }
+        
     }
 }

@@ -17,8 +17,12 @@ class SignalViewController: UIViewController {
         return bar
     }()
     
-    lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(close))
+    lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.white
+        button.setTitle("X", for: .normal)
+        button.backgroundColor = UIColor.blue
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         return button
     }()
     
@@ -87,8 +91,9 @@ class SignalViewController: UIViewController {
     }
     
     func setupViews() {
-        self.navigationItem.title = "New Signal"
-        self.navigationItem.rightBarButtonItem = cancelButton
+//        self.navigationItem.title = "New Signal"
+//        self.navigationItem.rightBarButtonItem = cancelButton
+        
         self.view.backgroundColor = UIColor.white
         
         let signalItem = SignalItemView(frame: .zero, color: colors[0])
@@ -97,6 +102,7 @@ class SignalViewController: UIViewController {
         
         self.view.addSubview(navigationBar)
         self.view.addSubview(contentView)
+        self.view.addSubview(cancelButton)
         self.contentView.addSubview(sendButton)
         self.contentView.addSubview(titleTextField)
         self.contentView.addSubview(signalItemStackView)
@@ -104,13 +110,18 @@ class SignalViewController: UIViewController {
         signalItem.colorButton.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
         signalItemStackView.addArrangedSubview(addField)
         
-        navigationBar.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
-            make.height.equalTo(64)
-        }
+        
+        navigationBar.isHidden = true
+        
+//        navigationBar.snp.makeConstraints { (make) in
+//            make.top.left.right.equalToSuperview()
+//            make.height.equalTo(64)
+//        }
+        
+        
         
         contentView.snp.makeConstraints { (make) in
-            make.top.equalTo(navigationBar.snp.bottom)
+            make.top.equalToSuperview()
             make.left.right.bottom.equalToSuperview()
         }
         
@@ -133,6 +144,15 @@ class SignalViewController: UIViewController {
             make.width.equalTo(200)
             make.bottom.equalToSuperview().offset(-50)
         }
+        
+        cancelButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+            
+        }
+        
     }
     
     func sendSignal() {
