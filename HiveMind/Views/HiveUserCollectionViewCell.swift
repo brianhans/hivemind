@@ -43,6 +43,11 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = color ?? .white
     }
     
+    func setupFirst(){
+        self.titleLabel.text = "+"
+        self.backgroundColor = .yellow
+    }
+    
     override func layoutSubviews() {
         let path = UIBezierPath.roundedPolygonPath(rect: self.bounds, lineWidth: 1, sides: 6, cornerRadius: 0)
         path.rotateAroundCenter(radians: CGFloat(90.degreesToRadians))

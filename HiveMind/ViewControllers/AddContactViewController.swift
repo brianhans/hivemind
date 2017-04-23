@@ -26,14 +26,41 @@ class AddContactViewController: UIViewController {
         return tableView
     }()
     
+    lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.white
+        button.setTitle("X", for: .normal)
+        button.backgroundColor = UIColor.blue
+        button.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        return button
+    }()
+    
+    
+    lazy var topLabel: UILabel = {
+        
+        let label = UILabel()
+        
+        label.text = "Contacts"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Avenir", size: 40)
+        label.backgroundColor = .white
+        return label
+        
+    }()
+    
+    
     lazy var navigationBar: UINavigationBar = {
         let bar = UINavigationBar()
         return bar
     }()
     
     
-    lazy var doneButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
+    lazy var doneButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Done", for: .normal)
+        button.addTarget(self, action: #selector(self.close), for: .touchUpInside)
+        button.backgroundColor = UIColor.darkOrange
+        button.layer.cornerRadius = 10
         return button
     }()
     
@@ -41,6 +68,8 @@ class AddContactViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "Search"
         textField.delegate = self
+        textField.backgroundColor = UIColor.lightGray
+        textField.layer.cornerRadius = 10
         return textField
     }()
     
@@ -71,31 +100,58 @@ class AddContactViewController: UIViewController {
     func setupViews() {
         tableView.register(ContactsTableViewCell.self, forCellReuseIdentifier: Constants.contactsTableViewCell)
         
-        self.navigationItem.title = "Contacts"
-        self.navigationItem.rightBarButtonItem = doneButton
         self.view.backgroundColor = UIColor.white
         
         navigationBar.pushItem(self.navigationItem, animated: false)
         
-        self.view.addSubview(navigationBar)
+//        self.view.addSubview(navigationBar)
         self.view.addSubview(tableView)
         self.view.addSubview(searchTextField)
+        self.view.addSubview(topLabel)
+        self.view.addSubview(cancelButton)
+        self.view.addSubview(doneButton)
         
-        navigationBar.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
-            make.height.equalTo(64)
+        
+        
+        
+        cancelButton.snp.makeConstraints { (make) in
+            
+            make.bottom.equalToSuperview().offset(-8)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.height.equalTo(50)
         }
         
+        topLabel.snp.makeConstraints{ (make) in
+            
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(60)
+            
+        }
+        
+        
         searchTextField.snp.makeConstraints{ (make) in
-            make.top.equalTo(navigationBar.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.top.equalTo(topLabel.snp.bottom)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.left.right.equalToSuperview().offset(10)
             make.height.equalTo(50)
         }
         
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(searchTextField.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(doneButton.snp.bottom)
         }
+        
+        cancelButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.height.equalTo(30)
+            make.width.equalTo(30)
+            
+        }
+        
     
     }
     
@@ -145,7 +201,12 @@ class AddContactViewController: UIViewController {
         }
     }
     
+    func cancel(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func close() {
+    
         var hiveContacts: [HiveUser] = []
         for contact in checked {
             var image: UIImage? = nil
@@ -165,7 +226,7 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     
     func getDataSource() -> [CNContact]{
         if let text = self.searchTextField.text{
-            if text.characters.count > 0 {
+            if text.characters.count > 0{
                 return filteredContacts
             }
         }
@@ -191,7 +252,7 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
         row.setSelected(false, animated: true)
         let dataSource = getDataSource()
         
-
+        
         
         if let index = checked.index(of: dataSource[indexPath.row]) {
             checked.remove(at: index)
@@ -213,7 +274,7 @@ extension AddContactViewController: UITextFieldDelegate{
 
         if let text = textField.text {
             let updatedText = NSString(string: text).replacingCharacters(in: range, with: string)
-            contactsFound = contacts.filter({$0.givenName.contains(updatedText)})
+            contactsFound = contacts.filter({$0.givenName.lowercased().contains(updatedText.lowercased())})
         }
         
         self.filteredContacts = contactsFound

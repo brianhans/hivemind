@@ -38,16 +38,39 @@ class HiveListViewController: UIViewController {
         return button
     }()
     
+    lazy var topLabel: UILabel = {
+        
+        let label = UILabel()
+        
+        label.text = "Hives"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Avenir", size: 40)
+        label.backgroundColor = .white
+        return label
+        
+    }()
+    
     func setupViews() {
         collectionView.register(HiveListCollectionViewCell.self, forCellWithReuseIdentifier: Constants.hiveListTableViewCell)
 
-        self.navigationItem.title = "Hives"
-        self.navigationItem.rightBarButtonItem = addButton
+//        self.navigationItem.title = "Hives"
+//        self.navigationItem.rightBarButtonItem = addButton
         
+        self.view.addSubview(topLabel)
         self.view.addSubview(collectionView)
         
+        topLabel.snp.makeConstraints { (make) in
+            
+            make.top.equalToSuperview().offset(20)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(60)
+            make.width.equalTo(UIScreen.main.bounds.width)
+            
+        }
+        
         collectionView.snp.makeConstraints { (make) in
-            make.top.bottom.left.right.equalToSuperview()
+            make.bottom.left.right.equalToSuperview()
+            make.top.equalTo(topLabel.snp.bottom)
         }
     }
     
@@ -72,6 +95,10 @@ extension HiveListViewController {
         collectionView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -83,18 +110,28 @@ extension HiveListViewController {
 extension HiveListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.hives.count
+        return  1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return viewModel.hives.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.hiveListTableViewCell, for: indexPath) as! HiveListCollectionViewCell
         
-        cell.setup(hive: viewModel.hives[indexPath.row])
+        if indexPath.row == 0 {
+            
+            cell.setupFirst()
+            
+        }
+        
+        else {
+            
+            cell.setup(hive: viewModel.hives[indexPath.row - 1])
+            
+        }
         
         return cell
         
@@ -102,7 +139,12 @@ extension HiveListViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let hiveController = HiveViewController(hive: viewModel.hives[indexPath.row])
+        if indexPath.row == 0 {
+            self.showAddView()
+            return
+        }
+        
+        let hiveController = HiveViewController(hive: viewModel.hives[indexPath.row - 1])
         self.navigationController?.pushViewController(hiveController, animated: true)
         collectionView.cellForItem(at: indexPath) //.setSelected(false, animated: true)
     }
@@ -111,7 +153,11 @@ extension HiveListViewController: UICollectionViewDataSource, UICollectionViewDe
         
         
         let width: CGFloat = UIScreen.main.bounds.width - 20
-        let height: CGFloat = 100
+        var height: CGFloat = 100
+        
+        if indexPath.row == 0 {
+            height = 40
+        }
 
         return CGSize(width: width, height: height)
         

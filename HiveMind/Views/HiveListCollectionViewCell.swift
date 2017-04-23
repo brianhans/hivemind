@@ -12,6 +12,7 @@ class HiveListCollectionViewCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         var label = UILabel()
+        label.textColor = UIColor.white
         return label 
     }()
     
@@ -33,10 +34,20 @@ class HiveListCollectionViewCell: UICollectionViewCell {
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(20)
         }
+        
+        self.layer.cornerRadius = 10
     }
 
     func setup(hive: Hive) {
         self.titleLabel.text = hive.name
+        self.titleLabel.font = UIFont(name: "Avenir", size: 36)
+
+        self.backgroundColor = UIColor.darkOrange
+    }
+    
+    func setupFirst(){
+        self.titleLabel.text = "+ New Hive"
+        self.backgroundColor = UIColor.blue
     }
     
    
