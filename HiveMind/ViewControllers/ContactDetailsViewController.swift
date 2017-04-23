@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class ContactDetailsViewController: UIViewController {
 
@@ -65,7 +66,7 @@ class ContactDetailsViewController: UIViewController {
     lazy var latestResponseLabel: UILabel = {
         var label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: ".SFUIText-Heavy", size: 14)
+        label.font = UIFont(name: "SFUIText", size: 14)
         label.text = "No Response"
         label.numberOfLines = 3
         return label
@@ -77,7 +78,7 @@ class ContactDetailsViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         button.addSubview(imageView)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //TODO: Add a target
+        button.addTarget(self, action: #selector(callNumber), for: .touchUpInside)
         
         imageView.snp.makeConstraints({ (make) in
             make.top.left.equalToSuperview().offset(5)
@@ -94,7 +95,7 @@ class ContactDetailsViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         button.addSubview(imageView)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //TODO: Add a target
+        button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         
         imageView.snp.makeConstraints({ (make) in
             make.top.left.equalToSuperview().offset(5)
@@ -132,13 +133,14 @@ class ContactDetailsViewController: UIViewController {
         
         
     
-        exitButton.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview().offset(10)
-            make.height.width.equalTo(30)
-        }
+//        exitButton.snp.makeConstraints { (make) in
+//            make.top.equalToSuperview().offset(8)
+//            make.right.equalToSuperview().offset(-8)
+//            make.height.width.equalTo(30)
+//        }
         
         nameLabel.snp.makeConstraints{ (make) in
-            make.top.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(8)
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview()
         }
@@ -176,6 +178,20 @@ class ContactDetailsViewController: UIViewController {
         self.latestResponseLabel.text = user.status
     }
     
+    func callNumber(){
+        guard let number = URL(string: "telprompt://" + user.phoneNumber) else { return }
+        UIApplication.shared.open(number, options: [:], completionHandler: nil)
+    }
+    
+    func sendMessage(){
+        let messageVC = MFMessageComposeViewController()
+        print(user.phoneNumber)
+        messageVC.recipients = [user.phoneNumber]
+        messageVC.messageComposeDelegate = self
+        
+        self.present(messageVC, animated: true, completion: nil)
+    }
+    
     func close() {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.alpha = 0
@@ -200,8 +216,6 @@ extension ContactDetailsViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
 
 
@@ -210,5 +224,16 @@ extension ContactDetailsViewController:UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return touch.view == gestureRecognizer.view
     }
+}
+
+
+extension ContactDetailsViewController: MFMessageComposeViewControllerDelegate {
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        
+    }
+    
 }
 
