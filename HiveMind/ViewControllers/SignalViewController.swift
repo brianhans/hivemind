@@ -127,6 +127,7 @@ class SignalViewController: UIViewController {
         
         titleTextField.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)
+            make.right.equalTo(cancelButton.snp.left).offset(-10)
             make.top.equalToSuperview().offset(20)
             make.height.equalTo(100)
         }
@@ -146,7 +147,7 @@ class SignalViewController: UIViewController {
         }
         
         cancelButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(8)
+            make.centerY.equalTo(titleTextField)
             make.right.equalToSuperview().offset(-8)
             make.height.equalTo(50)
             make.width.equalTo(50)

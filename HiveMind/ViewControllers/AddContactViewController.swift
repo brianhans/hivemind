@@ -21,6 +21,7 @@ class AddContactViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -37,12 +38,10 @@ class AddContactViewController: UIViewController {
     
     
     lazy var topLabel: UILabel = {
-        
         let label = UILabel()
         
         label.text = "Contacts"
-        label.textAlignment = .center
-        label.font = UIFont(name: ".SFUIText-Heavy", size: 40)
+        label.font = UIFont(name: ".SFUIText-Heavy", size: 60)
         label.backgroundColor = .white
         return label
         
@@ -65,11 +64,12 @@ class AddContactViewController: UIViewController {
     }()
     
     lazy var searchTextField: UITextField = {
-        let textField = UITextField()
+        let textField = UIPaddedTextField()
         textField.placeholder = "Search"
-        textField.delegate = self
-        textField.backgroundColor = UIColor.lightGray
+        textField.backgroundColor = UIColor.paleGray
         textField.layer.cornerRadius = 10
+        textField.delegate = self
+        textField.textAlignment = .center
         return textField
     }()
     
@@ -119,42 +119,40 @@ class AddContactViewController: UIViewController {
         doneButton.snp.makeConstraints { (make) in
             
             make.bottom.equalToSuperview().offset(-8)
-            make.left.equalToSuperview().offset(8)
-            make.right.equalToSuperview().offset(-8)
+            make.width.equalTo(200)
+            make.centerX.equalToSuperview()
             make.height.equalTo(50)
         }
         
         topLabel.snp.makeConstraints{ (make) in
             
-            make.top.left.right.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+            make.left.equalToSuperview().offset(20)
             make.height.equalTo(60)
             
         }
         
-        
         searchTextField.snp.makeConstraints{ (make) in
-            make.top.equalTo(topLabel.snp.bottom)
-            make.left.equalToSuperview().offset(8)
-            make.right.equalToSuperview().offset(-8)
-            make.left.right.equalToSuperview().offset(10)
-            make.height.equalTo(50)
+            make.top.equalTo(topLabel.snp.bottom).offset(20)
+            make.left.equalToSuperview().offset(30)
+            make.right.equalToSuperview().offset(-30)
+            make.height.equalTo(35)
         }
         
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(searchTextField.snp.bottom)
+            make.top.equalTo(searchTextField.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(doneButton.snp.bottom)
+            make.bottom.equalTo(doneButton.snp.top).offset(-10)
         }
         
         cancelButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(8)
+            make.centerY.equalTo(topLabel)
             make.right.equalToSuperview().offset(-8)
             make.height.equalTo(30)
             make.width.equalTo(30)
             
         }
-        
-    
     }
     
     func searchTextChanged() {
@@ -252,6 +250,10 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
         return self.getDataSource().count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.contactsTableViewCell) as! ContactsTableViewCell
         let dataSource = getDataSource()
@@ -277,17 +279,14 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-extension AddContactViewController: UITextFieldDelegate{
-    
-    
+extension AddContactViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
- 
+        if string.characters.count == 0 {
+            textField.textAlignment = .center
+        } else {
+            textField.textAlignment = .left
+        }
         
         return true
-        
     }
-    
-    
-    
 }

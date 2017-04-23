@@ -16,7 +16,7 @@ class ContactsTableViewCell: UITableViewCell {
     }()
     
     lazy var checkBoxImage: UIImageView = {
-        var imageView = UIImageView(image: #imageLiteral(resourceName: "checkboxNotSelected"))
+        var imageView = UIImageView(image: #imageLiteral(resourceName: "Add"))
         imageView.tintColor = UIColor.blue
         return imageView
     }()
@@ -55,9 +55,9 @@ class ContactsTableViewCell: UITableViewCell {
     
     func setChecked(_ checked: Bool) {
         if checked {
-            checkBoxImage.image = #imageLiteral(resourceName: "checkboxSelected")
+            checkBoxImage.image = #imageLiteral(resourceName: "Checked")
         } else {
-            checkBoxImage.image =  #imageLiteral(resourceName: "checkboxNotSelected")
+            checkBoxImage.image =  #imageLiteral(resourceName: "Add")
         }
     }
     

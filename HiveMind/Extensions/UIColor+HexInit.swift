@@ -54,4 +54,8 @@ extension UIColor {
         return UIColor(hex: 0xD0011B)
     }
     
+    @nonobjc static var paleGray: UIColor {
+        return UIColor(hex: 0xEFEFF4)
+    }
+    
 }

@@ -24,6 +24,7 @@ class HiveListViewController: UIViewController {
         let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
         cv.backgroundColor = .white
         
+        cv.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         cv.alwaysBounceVertical = true
         cv.delegate = self
         cv.dataSource = self
@@ -57,7 +58,8 @@ class HiveListViewController: UIViewController {
         self.view.addSubview(collectionView)
         
         topLabel.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(40)
             make.right.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width)
         }

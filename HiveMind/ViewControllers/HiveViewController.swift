@@ -42,11 +42,6 @@ class HiveViewController: UIViewController {
         return button
     }()
     
-    lazy var addButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.showAddView))
-        return button
-    }()
-    
     lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(updateHive), for: .valueChanged)
@@ -75,9 +70,13 @@ class HiveViewController: UIViewController {
         collectionView.register(HiveUserCollectionViewCell.self, forCellWithReuseIdentifier: Constants.hiveUserCollectionViewCell)
         collectionView.addSubview(refreshControl)
         
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = UIColor.darkOrange
         
         self.navigationItem.title = viewModel.hive.name
-        self.navigationItem.rightBarButtonItem = addButton
         
         self.view.backgroundColor = UIColor.white
         
@@ -93,7 +92,8 @@ class HiveViewController: UIViewController {
         
 
         collectionView.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(signalButton.snp.top)
         }
     }
