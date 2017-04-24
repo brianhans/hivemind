@@ -141,8 +141,6 @@ class ContactDetailsViewController: UIViewController {
             make.height.equalTo(200)
         }
         
-        
-    
 //        exitButton.snp.makeConstraints { (make) in
 //            make.top.equalToSuperview().offset(8)
 //            make.right.equalToSuperview().offset(-8)
