@@ -11,6 +11,7 @@ import UIKit
 class SignalViewController: UIViewController {
 
     var colors: [UIColor] = [.brightGreen, .dullRed, .craterBrown]
+    var maxCharacters = 130
     
     lazy var navigationBar: UINavigationBar = {
         let bar = UINavigationBar()
@@ -50,8 +51,12 @@ class SignalViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
         view.signalTitleTextField.isUserInteractionEnabled = false
         view.signalTitleTextField.placeholder = "Add Option"
+        // TODO: verify this functionality
+        view.signalTitleTextField.delegate = self
+        view.setTextFieldDelegate(delegate: self)
         let plusImage = UIImageView(image: #imageLiteral(resourceName: "Plus"))
         plusImage.contentMode = .scaleAspectFit
+        
 
 
         view.colorButton.addSubview(plusImage)
@@ -91,6 +96,7 @@ class SignalViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         
         let signalItem = SignalItemView(frame: .zero, color: colors[0])
+        signalItem.setTextFieldDelegate(delegate: self)
         
         navigationBar.backgroundColor = UIColor.clear
         navigationBar.isTranslucent = true
@@ -154,6 +160,8 @@ class SignalViewController: UIViewController {
     
     func addInputField() {
         let signalItem = SignalItemView(frame: .zero, color: colors[signalItemStackView.arrangedSubviews.count - 1])
+        signalItem.setTextFieldDelegate(delegate: self)
+        
         signalItem.colorButton.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
         signalItemStackView.insertArrangedSubview(signalItem, at: signalItemStackView.arrangedSubviews.count - 1)
         
@@ -192,4 +200,42 @@ extension SignalViewController: UITextViewDelegate {
             textView.textColor = UIColor.lightGray
         }
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "" && text.characters.count == 0 {
+            print("case 1")
+            maxCharacters += (range.length + 1)
+            return true
+        }
+        
+        else if maxCharacters - range.length > 1 {
+            maxCharacters -= (range.length + 1)
+            return true
+        }
+        
+        return false
+        
+    }
+}
+
+extension SignalViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string == "" && string.characters.count == 0 {
+            print("case 1")
+            maxCharacters += (range.length)
+            return true
+        }
+            
+        else if maxCharacters - range.length > 1 {
+            maxCharacters -= (range.length + 1)
+            return true
+        }
+        
+        return false
+    }
+    
+    
 }

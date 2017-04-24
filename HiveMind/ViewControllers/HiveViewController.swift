@@ -158,7 +158,7 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         let user = viewModel.hive.users[indexPath.item - 1]
-        var color: UIColor = .goldenTainoi
+        var color: UIColor = .darkOrange
         
         if let colors = viewModel.signal?.statusColors {
             if user.status > 0 && user.status < colors.count {

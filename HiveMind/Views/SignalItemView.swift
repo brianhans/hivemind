@@ -17,7 +17,7 @@ class SignalItemView: UIView {
         self.colorButton = UIButton(type: .custom)
         self.colorButton.backgroundColor = color
         self.signalTitleTextField = UITextField()
-        
+
         super.init(frame: frame)
         setupViews()
         layoutIfNeeded()
@@ -50,6 +50,10 @@ class SignalItemView: UIView {
     
     func setColor(_ color: UIColor) {
         self.colorButton.backgroundColor = color
+    }
+    
+    func setTextFieldDelegate(delegate: UITextFieldDelegate){
+        self.signalTitleTextField.delegate = delegate
     }
     
     override func layoutSubviews() {

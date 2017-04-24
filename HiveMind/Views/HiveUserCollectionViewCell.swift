@@ -44,7 +44,7 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
     
     func setupFirst(){
         self.titleLabel.text = "+"
-        self.backgroundColor = .darkOrange
+        self.backgroundColor = .goldenTainoi
     }
     
     override func layoutSubviews() {
