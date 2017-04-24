@@ -11,7 +11,12 @@ import UIKit
 class SignalViewController: UIViewController {
 
     var colors: [UIColor] = [.brightGreen, .dullRed, .craterBrown]
-    var maxCharacters = 130
+   
+    var maxCharacters = 130 {
+        didSet {
+            self.characterCountLabel.text = "Characters:  " + String(describing: maxCharacters)
+        }
+    }
     
     lazy var navigationBar: UINavigationBar = {
         let bar = UINavigationBar()
@@ -69,6 +74,15 @@ class SignalViewController: UIViewController {
         return view
     }()
     
+    lazy var characterCountLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont(name: ".SFUIText", size: 20)!
+        label.text = "Characters: \(self.maxCharacters)"
+        label.textColor = UIColor.lightGray
+        return label
+    
+    }()
+    
     var contentView: UIView = UIView()
     var completion: ((Signal) -> Void)?
     
@@ -107,6 +121,7 @@ class SignalViewController: UIViewController {
         
         self.view.addSubview(navigationBar)
         self.view.addSubview(contentView)
+        self.view.addSubview(characterCountLabel)
         self.contentView.addSubview(titleTextField)
         self.contentView.addSubview(signalItemStackView)
         signalItemStackView.addArrangedSubview(signalItem)
@@ -132,12 +147,22 @@ class SignalViewController: UIViewController {
             make.bottom.equalTo(signalItemStackView.snp.top).offset(-20)
         }
         
+        characterCountLabel.snp.makeConstraints{ (make) in
+            make.bottom.equalToSuperview().offset(-20)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(60)
+            make.left.equalTo(signalItemStackView.snp.left)
+            
+        }
+        
         signalItemStackView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
             make.centerY.equalToSuperview()
             make.height.equalTo(180 + (25 * 3))
         }
+        
+        
     }
     
     func sendSignal() {
@@ -205,7 +230,7 @@ extension SignalViewController: UITextViewDelegate {
         
         if text == "" && text.characters.count == 0 {
             print("case 1")
-            maxCharacters += (range.length + 1)
+            maxCharacters += (range.length)
             return true
         }
         
