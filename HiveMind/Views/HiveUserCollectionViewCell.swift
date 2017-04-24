@@ -32,14 +32,12 @@ class HiveUserCollectionViewCell: UICollectionViewCell {
         self.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview().offset(-10)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview()
+            make.centerY.left.right.equalToSuperview()
         }
     }
     
     func setup(user: HiveUser, color: UIColor?) {
-        let initials = user.name.components(separatedBy: " ").map{$0.substring(to: $0.index($0.startIndex, offsetBy: 1))}.joined()
+        let initials = user.name.components(separatedBy: " ").map{$0.substring(to: $0.index($0.startIndex, offsetBy: 1, limitedBy: $0.endIndex) ?? $0.endIndex)}.joined()
         self.titleLabel.text = initials
         self.backgroundColor = color ?? .white
     }

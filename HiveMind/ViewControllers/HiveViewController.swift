@@ -80,7 +80,8 @@ class HiveViewController: UIViewController {
 
         collectionView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(20)
-            make.left.right.bottom.equalToSuperview()
+            make.right.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
         }
     }
     
@@ -90,9 +91,23 @@ class HiveViewController: UIViewController {
     
     func showAddView() {
         let contactController = AddContactViewController(users: self.viewModel.hive.users) { contacts in
+            let oldContacts = self.viewModel.hive.users
             self.viewModel.hive.users = contacts
             self.viewModel.hive.save()
+            
+            var removedUsers: [String] = []
+            
+            for user in oldContacts {
+                if !contacts.contains(user) {
+                    removedUsers.append(user.phoneNumber)
+                }
+            }
+            
             HiveProvider.addToHive(id: self.viewModel.hive.id, numbers: self.viewModel.hive.users.map{$0.phoneNumber})
+            
+            if removedUsers.count > 0 {
+                HiveProvider.removeFromHive(id: self.viewModel.hive.id, numbers: removedUsers)
+            }
             self.collectionView.reloadData()
         }
         
@@ -101,6 +116,7 @@ class HiveViewController: UIViewController {
     
     func showSignalView() {
         let signalVC = SignalViewController() { signal in
+            _ = self.viewModel.hive.users.map{$0.status = 0}
             self.viewModel.hive.signal = signal
             self.viewModel.hive.save()
             HiveProvider.sendSignal(id: self.viewModel.hive.id, command: signal.title, options: signal.options)

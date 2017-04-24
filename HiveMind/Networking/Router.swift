@@ -60,7 +60,7 @@ enum HiveRouter: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch method {
-        case .post:
+        case .post, .delete:
             return try JSONEncoding.default.encode(urlRequest, with: parameters)
         default:
             return try URLEncoding.methodDependent.encode(urlRequest, with: parameters)

@@ -14,7 +14,7 @@ extension UIBezierPath {
         let path = UIBezierPath()
         let theta: CGFloat = CGFloat(2.0 * .pi) / CGFloat(sides) // How much to turn at every corner
         let offset: CGFloat = cornerRadius * tan(theta / 2.0)     // Offset from which to start rounding corners
-        let width = min(rect.size.width, rect.size.height)        // Width of the square
+        let width = rect.size.height       // Width of the square
         
         let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
         
@@ -57,6 +57,7 @@ extension UIBezierPath {
         self.apply(CGAffineTransform(translationX: center.x, y: center.y).inverted())
         self.apply(CGAffineTransform(rotationAngle: radians))
         self.apply(CGAffineTransform(translationX: center.x, y: center.y))
+        self.apply(CGAffineTransform(translationX: -15, y: 0))
     }
 }
 

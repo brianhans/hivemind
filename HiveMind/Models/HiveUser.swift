@@ -11,13 +11,15 @@ import CoreData
 import SwiftyJSON
 import Contacts
 
-struct HiveUser: Equatable {
+class HiveUser: Equatable {
     let name: String
     let phoneNumber: String
     let picture: UIImage?
     var status: Int
     
-    init(contact: CNContact) {
+    init?(contact: CNContact) {
+        guard contact.phoneNumbers.count > 0 else { return nil }
+        
         var image: UIImage? = nil
         if let imageData = contact.imageData {
             image = UIImage(data: imageData)
@@ -36,7 +38,7 @@ struct HiveUser: Equatable {
         self.status = status
     }
     
-    init?(json: JSON) {
+    convenience init?(json: JSON) {
         guard let number = json[Constants.number].string else { return nil }
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -53,13 +55,12 @@ struct HiveUser: Equatable {
         //Check to see if this user already exist and update it if it does or create a new one
         if let users = try? managedContext.fetch(fetchRequest), users.count > 0 {
             let user = users[0]
-            self = HiveUser(coreDataObject: user)
+            self.init(coreDataObject: user)
+            let statusString = json[Constants.lastResponse].string ?? ""
+            self.status = Int(statusString) ?? 0
         } else {
             return nil
         }
-
-        let statusString = json[Constants.lastResponse].string ?? ""
-        self.status = Int(statusString) ?? 0
     }
     
     init(coreDataObject: NSManagedObject) {

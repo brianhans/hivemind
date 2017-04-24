@@ -126,7 +126,7 @@ class AddContactViewController: UIViewController {
                 
                 let predicate = CNContact.predicateForContactsInContainer(withIdentifier: self.contactStore.defaultContainerIdentifier())
                 if let contacts = try? self.contactStore.unifiedContacts(matching: predicate, keysToFetch: keys) {
-                    self.contacts = contacts.map(HiveUser.init)
+                    self.contacts = contacts.flatMap(HiveUser.init)
                     self.tableView.reloadData()
                 }
             } else {

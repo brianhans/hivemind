@@ -65,7 +65,7 @@ class HiveProvider {
             switch response.result {
             case let .success(value):
                 let json = JSON(value)
-                if json[Constants.drones].arrayObject != nil {
+                if json.arrayObject != nil {
                     completion?(nil)
                 } else {
                     completion?(HiveError.unknown)

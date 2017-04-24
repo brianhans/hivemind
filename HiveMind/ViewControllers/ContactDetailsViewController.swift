@@ -75,6 +75,7 @@ class ContactDetailsViewController: UIViewController {
     lazy var callButton: UIButton = {
         let button = UIButton(type: .custom)
         let imageView = UIImageView(image: #imageLiteral(resourceName: "phone"))
+        imageView.tintColor = UIColor.goldenTainoi
         imageView.contentMode = .scaleAspectFit
         button.addSubview(imageView)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +93,7 @@ class ContactDetailsViewController: UIViewController {
     lazy var textButton: UIButton = {
         let button = UIButton(type: .custom)
         let imageView = UIImageView(image: #imageLiteral(resourceName: "text-bubble"))
+        imageView.tintColor = UIColor.goldenTainoi
         imageView.contentMode = .scaleAspectFit
         button.addSubview(imageView)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -130,14 +132,18 @@ class ContactDetailsViewController: UIViewController {
         backgroundView.addSubview(exitButton)
         backgroundView.addSubview(latestResponseHeaderLabel)
         backgroundView.addSubview(latestResponseLabel)
-        backgroundView.addSubview(callButton)
-        backgroundView.addSubview(textButton)
+        
+        let buttonsView = UIView()
+        backgroundView.addSubview(buttonsView)
+        
+        buttonsView.addSubview(callButton)
+        buttonsView.addSubview(textButton)
         
         
         
         backgroundView.snp.makeConstraints { (make) in
             make.centerX.centerY.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.9)
+            make.width.equalToSuperview().multipliedBy(0.7)
             make.height.equalTo(200)
         }
         
@@ -167,18 +173,22 @@ class ContactDetailsViewController: UIViewController {
             make.right.equalToSuperview()
         }
         
+        buttonsView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        
         callButton.snp.makeConstraints{ (make) in
-            make.top.equalTo(latestResponseHeaderLabel.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(8)
-            make.width.equalTo(40)
-            make.height.equalTo(40)
+            make.top.bottom.equalToSuperview()
+            make.left.equalToSuperview()
+            make.width.height.equalTo(40)
         }
         
         textButton.snp.makeConstraints { (make) in
-            make.top.equalTo(latestResponseHeaderLabel.snp.bottom).offset(8)
+            make.top.bottom.equalToSuperview()
             make.left.equalTo(callButton.snp.right).offset(4)
-            make.width.equalTo(40)
-            make.height.equalTo(40)
+            make.right.equalToSuperview()
+            make.width.height.equalTo(40)
         }
     }
     

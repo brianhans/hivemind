@@ -76,6 +76,11 @@ class AddHiveViewController: UIViewController {
         return view
     }()
     
+    lazy var containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
 
     
     override func viewDidLoad() {
@@ -83,6 +88,20 @@ class AddHiveViewController: UIViewController {
         
         setupViews()
         inputField.becomeFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardChanged(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardChanged(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func setupViews() {
@@ -97,7 +116,12 @@ class AddHiveViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.tintColor = UIColor.darkOrange
         
-        self.view.addSubview(backgroundView)
+        self.view.addSubview(containerView)
+        self.containerView.addSubview(backgroundView)
+        
+        containerView.snp.makeConstraints { (make) in
+            make.top.bottom.left.right.equalToSuperview()
+        }
         
         backgroundView.snp.makeConstraints { (make) in
             make.centerX.centerY.equalToSuperview()
@@ -147,6 +171,26 @@ class AddHiveViewController: UIViewController {
             make.left.right.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.3)
         }
+    }
+    
+    func keyboardChanged(notification: Notification) {
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let offset: CGFloat
+        
+        if keyboardFrame.origin.y >= UIScreen.main.bounds.size.height {
+            offset = 0
+        } else {
+            offset = -keyboardFrame.size.height
+        }
+        
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.containerView.snp.updateConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(offset)
+            })
+            
+            self.view.layoutIfNeeded()
+        })
     }
     
     func addHive() {
