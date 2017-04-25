@@ -16,6 +16,7 @@ class HiveUser: Equatable {
     let phoneNumber: String
     let picture: UIImage?
     var status: Int
+    var customResponse: String?
     
     init?(contact: CNContact) {
         guard contact.phoneNumbers.count > 0 else { return nil }
@@ -57,7 +58,11 @@ class HiveUser: Equatable {
             let user = users[0]
             self.init(coreDataObject: user)
             let statusString = json[Constants.lastResponse].string ?? ""
-            self.status = Int(statusString) ?? 0
+            self.status = Int(statusString) ?? 4
+            if self.status == 4 {
+                customResponse = statusString
+            }
+            
         } else {
             return nil
         }

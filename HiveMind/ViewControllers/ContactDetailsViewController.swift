@@ -196,7 +196,7 @@ class ContactDetailsViewController: UIViewController {
         if let signal = signal, user.status > 0 && user.status < signal.options.count {
             self.latestResponseLabel.text = signal.options[user.status - 1]
         } else {
-            self.latestResponseLabel.text = ""
+            self.latestResponseLabel.text = user.customResponse ?? ""
         }
     }
     

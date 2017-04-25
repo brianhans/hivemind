@@ -119,6 +119,7 @@ class HiveViewController: UIViewController {
             _ = self.viewModel.hive.users.map{$0.status = 0}
             self.viewModel.hive.signal = signal
             self.viewModel.hive.save()
+            self.collectionView.reloadData()
             HiveProvider.sendSignal(id: self.viewModel.hive.id, command: signal.title, options: signal.options)
         }
         
@@ -161,8 +162,14 @@ extension HiveViewController: UICollectionViewDelegate, UICollectionViewDataSour
         var color: UIColor = .darkOrange
         
         if let colors = viewModel.signal?.statusColors {
-            if user.status > 0 && user.status < colors.count {
+            if user.status > 0 && user.status <= colors.count {
                 color = colors[user.status - 1]
+                if user.status == 2 {
+                    color = UIColor.goldenYellow
+                }
+                if user.status == 1 {
+                    color = UIColor.brightGreen
+                }
             }
         }
 

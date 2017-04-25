@@ -42,7 +42,6 @@ extension UIColor {
         return UIColor(hex: 0xFCEF92)
     }
     
-    
     @nonobjc static var aquaHaze: UIColor {
         return UIColor(hex: 0xD5D6D4)
     }
@@ -51,8 +50,12 @@ extension UIColor {
         return UIColor(hex: 0x554441)
     }
     
-    @nonobjc static var brightGreen: UIColor {
+    @nonobjc static var paleGreen: UIColor {
         return UIColor(hex: 0xB8E986)
+    }
+    
+    @nonobjc static var brightGreen: UIColor {
+        return UIColor(hex: 0x44DB5E)
     }
     
     @nonobjc static var dullRed: UIColor {
@@ -63,4 +66,8 @@ extension UIColor {
         return UIColor(hex: 0xEFEFF4)
     }
     
+    
+    @nonobjc static var goldenYellow: UIColor {
+        return UIColor(hex: 0xF1E43F)
+    }
 }
