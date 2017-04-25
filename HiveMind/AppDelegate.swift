@@ -18,10 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = UINavigationController(rootViewController: HiveListViewController())
-        self.window?.makeKeyAndVisible()
+        self.window?.rootViewController = OnBoardViewController() //UINavigationController(rootViewController: HiveListViewController())
         
         IQKeyboardManager.shared().isEnabled = true
+        
+        // Onboard completed
+        if let onboard = UserDefaults.standard.value(forKey: "onboard"){
+            self.window?.rootViewController = UINavigationController(rootViewController: HiveListViewController())
+        } else {
+            self.window?.rootViewController = OnBoardViewController()
+        }
+    
+        self.window?.makeKeyAndVisible()
 
         return true
     }

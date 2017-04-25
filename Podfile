@@ -11,6 +11,7 @@ target 'HiveMind' do
   pod 'SwiftyJSON'
   pod 'PBJHexagon'
   pod 'IQKeyboardManager'
+  pod 'SwiftyOnboard'
 
 
 end
