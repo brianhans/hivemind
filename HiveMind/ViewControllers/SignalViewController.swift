@@ -27,6 +27,7 @@ class SignalViewController: UIViewController {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fillEqually
+        stack.spacing = 25
         return stack
     }()
     
@@ -62,7 +63,6 @@ class SignalViewController: UIViewController {
         view.setTextFieldDelegate(delegate: self)
         let plusImage = UIImageView(image: #imageLiteral(resourceName: "Plus"))
         plusImage.contentMode = .scaleAspectFit
-        
 
 
         view.colorButton.addSubview(plusImage)
@@ -84,6 +84,7 @@ class SignalViewController: UIViewController {
     
     }()
     
+    
     var contentView: UIView = UIView()
     var completion: ((Signal) -> Void)?
     
@@ -101,6 +102,20 @@ class SignalViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardChanged(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardChanged(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+     
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func setupViews() {
@@ -192,7 +207,7 @@ class SignalViewController: UIViewController {
         signalItem.tintColor = UIColor.goldenTainoi
 
         self.signalItemStackView.insertArrangedSubview(signalItem, at: self.signalItemStackView.arrangedSubviews.count - 1)
-        signalItem.becomeFirstResponder()
+        _ = signalItem.becomeFirstResponder()
         
         //Remove the add button if they reach the max amount
         if signalItemStackView.arrangedSubviews.count > 3 {
@@ -212,6 +227,34 @@ class SignalViewController: UIViewController {
     
     func close() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func keyboardChanged(notification: Notification) {
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let offset: CGFloat
+        let height: CGFloat
+        
+        if keyboardFrame.origin.y >= UIScreen.main.bounds.size.height {
+            offset = 0
+            height = 180 + (25 * 3)
+
+        } else {
+            offset = -keyboardFrame.size.height
+            height = UIScreen.main.bounds.height - keyboardFrame.size.height - navigationBar.frame.height
+        }
+        
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.contentView.snp.updateConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(offset)
+            })
+            
+            self.signalItemStackView.snp.makeConstraints({ (make) in
+                make.height.equalTo(height)
+            })
+            
+            self.view.layoutIfNeeded()
+        })
     }
 }
 
