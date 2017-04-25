@@ -80,7 +80,6 @@ extension OnBoardViewController: SwiftyOnboardDelegate, SwiftyOnboardDataSource 
         
         //Set the image on the page:
         view.imageView.image = UIImage(named: "onboard\(index)")
-        
         //Set the font and color for the labels:
         view.title.font = UIFont(name: "Lato-Heavy", size: 22)
         view.subTitle.font = UIFont(name: "Lato-Regular", size: 16)

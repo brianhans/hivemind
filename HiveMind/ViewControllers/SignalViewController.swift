@@ -237,7 +237,7 @@ class SignalViewController: UIViewController {
         
         if keyboardFrame.origin.y >= UIScreen.main.bounds.size.height {
             offset = 0
-            height = 180 + (25 * 3)
+            height = CGFloat(180 + (25 * 3))
 
         } else {
             offset = -keyboardFrame.size.height
