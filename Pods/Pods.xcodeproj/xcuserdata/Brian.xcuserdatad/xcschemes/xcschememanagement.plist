@@ -8,36 +8,76 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>PBJHexagon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-HiveMind.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>213924A49D710416804E97566640CC4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>28017AE3B94406E12C83AAA4C4467605</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37C76CD246D637B8E4C586284A0D96B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>45CDAD5E9C1D73E1B50958C06883AFCF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5C2BF9A89486ED3EA32D6555291F766F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>732FA4BBBD292EE87887B661E47412E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,6 +93,11 @@
 			<true/>
 		</dict>
 		<key>D77F12826FFE66C84140B604103B829F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F447F906D101B30F365DA7E6991D212B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
