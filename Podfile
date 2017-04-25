@@ -10,6 +10,8 @@ target 'HiveMind' do
   pod 'SnapKit', '~> 3.2.0'
   pod 'SwiftyJSON'
   pod 'PBJHexagon'
+  pod 'IQKeyboardManager'
+
 
 end
 

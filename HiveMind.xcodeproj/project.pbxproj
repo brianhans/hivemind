@@ -1,536 +1,1333 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		81E0B4C1D66BA50C43808816 /* Pods_HiveMind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCE9B9F01A9CE1206AF87E5 /* Pods_HiveMind.framework */; };
-		BD4048BD1EAD267900EF2356 /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4048BC1EAD267900EF2356 /* ContactDetailsViewController.swift */; };
-		D3185D1A1EA6D80700DA7C7F /* SignalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3185D191EA6D80700DA7C7F /* SignalViewController.swift */; };
-		D3185D1C1EA6F64E00DA7C7F /* SignalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */; };
-		D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064B1EA803AF0055F99F /* ColorPickerController.swift */; };
-		D34D064F1EA810780055F99F /* UIColor+HexInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D064E1EA810780055F99F /* UIColor+HexInit.swift */; };
-		D34D06511EA817E80055F99F /* UIBezierPath+Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */; };
-		D34D06531EA82EAE0055F99F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D06521EA82EAE0055F99F /* Router.swift */; };
-		D34D06551EA835B10055F99F /* HiveProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34D06541EA835B10055F99F /* HiveProvider.swift */; };
-		D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694331EA412BC00875CF0 /* AppDelegate.swift */; };
-		D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694351EA412BC00875CF0 /* HiveListViewController.swift */; };
-		D356943B1EA412BC00875CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D356943A1EA412BC00875CF0 /* Assets.xcassets */; };
-		D356943E1EA412BC00875CF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D356943C1EA412BC00875CF0 /* LaunchScreen.storyboard */; };
-		D356944B1EA4398200875CF0 /* HiveListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356944A1EA4398200875CF0 /* HiveListViewModel.swift */; };
-		D356944D1EA43A0100875CF0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356944C1EA43A0100875CF0 /* Constants.swift */; };
-		D356944F1EA43A2700875CF0 /* HiveListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356944E1EA43A2700875CF0 /* HiveListCollectionViewCell.swift */; };
-		D35694511EA43A9900875CF0 /* Hive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694501EA43A9900875CF0 /* Hive.swift */; };
-		D35694531EA43AE600875CF0 /* HiveUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694521EA43AE600875CF0 /* HiveUser.swift */; };
-		D35694571EA43B6900875CF0 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694561EA43B6900875CF0 /* Signal.swift */; };
-		D35694591EA444AD00875CF0 /* HiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694581EA444AD00875CF0 /* HiveViewController.swift */; };
-		D356945B1EA444B600875CF0 /* HiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356945A1EA444B600875CF0 /* HiveViewModel.swift */; };
-		D356945D1EA446F900875CF0 /* AddHiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356945C1EA446F900875CF0 /* AddHiveViewController.swift */; };
-		D356945F1EA44F5A00875CF0 /* UIPaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D356945E1EA44F5A00875CF0 /* UIPaddedTextField.swift */; };
-		D35694611EA4534300875CF0 /* HiveUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694601EA4534300875CF0 /* HiveUserCollectionViewCell.swift */; };
-		D35694631EA455F400875CF0 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694621EA455F400875CF0 /* AddContactViewController.swift */; };
-		D35694651EA4789700875CF0 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35694641EA4789700875CF0 /* ContactsTableViewCell.swift */; };
-		D365BE3D1EAD641E00C9F8CD /* String+Clean.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365BE3C1EAD641E00C9F8CD /* String+Clean.swift */; };
-		D36C0C011EAA75E100F00E58 /* Hive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D36C0BFF1EAA75E100F00E58 /* Hive.xcdatamodeld */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
-		3FCE9B9F01A9CE1206AF87E5 /* Pods_HiveMind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HiveMind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BE6FECD2D622B45CB6D0F96 /* Pods-HiveMind.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiveMind.release.xcconfig"; path = "Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind.release.xcconfig"; sourceTree = "<group>"; };
-		BD4048BC1EAD267900EF2356 /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
-		D3185D191EA6D80700DA7C7F /* SignalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalViewController.swift; sourceTree = "<group>"; };
-		D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalItemView.swift; sourceTree = "<group>"; };
-		D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiveMind-BridgingHeader.h"; sourceTree = "<group>"; };
-		D34D064B1EA803AF0055F99F /* ColorPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerController.swift; sourceTree = "<group>"; };
-		D34D064E1EA810780055F99F /* UIColor+HexInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexInit.swift"; sourceTree = "<group>"; };
-		D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Polygon.swift"; sourceTree = "<group>"; };
-		D34D06521EA82EAE0055F99F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		D34D06541EA835B10055F99F /* HiveProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveProvider.swift; sourceTree = "<group>"; };
-		D35694301EA412BC00875CF0 /* HiveMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiveMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D35694331EA412BC00875CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D35694351EA412BC00875CF0 /* HiveListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HiveListViewController.swift; path = ../HiveListViewController.swift; sourceTree = "<group>"; };
-		D356943A1EA412BC00875CF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D356943D1EA412BC00875CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D356943F1EA412BC00875CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D356944A1EA4398200875CF0 /* HiveListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveListViewModel.swift; sourceTree = "<group>"; };
-		D356944C1EA43A0100875CF0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D356944E1EA43A2700875CF0 /* HiveListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveListCollectionViewCell.swift; sourceTree = "<group>"; };
-		D35694501EA43A9900875CF0 /* Hive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hive.swift; sourceTree = "<group>"; };
-		D35694521EA43AE600875CF0 /* HiveUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveUser.swift; sourceTree = "<group>"; };
-		D35694561EA43B6900875CF0 /* Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
-		D35694581EA444AD00875CF0 /* HiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveViewController.swift; sourceTree = "<group>"; };
-		D356945A1EA444B600875CF0 /* HiveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveViewModel.swift; sourceTree = "<group>"; };
-		D356945C1EA446F900875CF0 /* AddHiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHiveViewController.swift; sourceTree = "<group>"; };
-		D356945E1EA44F5A00875CF0 /* UIPaddedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddedTextField.swift; sourceTree = "<group>"; };
-		D35694601EA4534300875CF0 /* HiveUserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiveUserCollectionViewCell.swift; sourceTree = "<group>"; };
-		D35694621EA455F400875CF0 /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
-		D35694641EA4789700875CF0 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
-		D365BE3C1EAD641E00C9F8CD /* String+Clean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Clean.swift"; sourceTree = "<group>"; };
-		D36C0C001EAA75E100F00E58 /* Hive.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hive.xcdatamodel; sourceTree = "<group>"; };
-		D3A45E96FC8093DB16AA172F /* Pods-HiveMind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiveMind.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind.debug.xcconfig"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		D356942D1EA412BC00875CF0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81E0B4C1D66BA50C43808816 /* Pods_HiveMind.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		08E68DF2218800BB1A9F6114 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3FCE9B9F01A9CE1206AF87E5 /* Pods_HiveMind.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7BD917599957CEC5BCB50AE3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D3A45E96FC8093DB16AA172F /* Pods-HiveMind.debug.xcconfig */,
-				8BE6FECD2D622B45CB6D0F96 /* Pods-HiveMind.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		D34D064D1EA810430055F99F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D34D064E1EA810780055F99F /* UIColor+HexInit.swift */,
-				D34D06501EA817E80055F99F /* UIBezierPath+Polygon.swift */,
-				D365BE3C1EAD641E00C9F8CD /* String+Clean.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D35694271EA412BC00875CF0 = {
-			isa = PBXGroup;
-			children = (
-				D35694321EA412BC00875CF0 /* HiveMind */,
-				D35694311EA412BC00875CF0 /* Products */,
-				7BD917599957CEC5BCB50AE3 /* Pods */,
-				08E68DF2218800BB1A9F6114 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		D35694311EA412BC00875CF0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D35694301EA412BC00875CF0 /* HiveMind.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D35694321EA412BC00875CF0 /* HiveMind */ = {
-			isa = PBXGroup;
-			children = (
-				D34D064D1EA810430055F99F /* Extensions */,
-				D35694491EA4382E00875CF0 /* Networking */,
-				D35694451EA4382000875CF0 /* ViewModels */,
-				D35694461EA4382000875CF0 /* Models */,
-				D35694471EA4382000875CF0 /* Views */,
-				D35694481EA4382000875CF0 /* ViewControllers */,
-				D35694331EA412BC00875CF0 /* AppDelegate.swift */,
-				D356943A1EA412BC00875CF0 /* Assets.xcassets */,
-				D356943C1EA412BC00875CF0 /* LaunchScreen.storyboard */,
-				D356943F1EA412BC00875CF0 /* Info.plist */,
-				D356944C1EA43A0100875CF0 /* Constants.swift */,
-				D3185D1D1EA7C33A00DA7C7F /* HiveMind-BridgingHeader.h */,
-				D36C0BFF1EAA75E100F00E58 /* Hive.xcdatamodeld */,
-			);
-			path = HiveMind;
-			sourceTree = "<group>";
-		};
-		D35694451EA4382000875CF0 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				D356944A1EA4398200875CF0 /* HiveListViewModel.swift */,
-				D356945A1EA444B600875CF0 /* HiveViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		D35694461EA4382000875CF0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D35694501EA43A9900875CF0 /* Hive.swift */,
-				D35694521EA43AE600875CF0 /* HiveUser.swift */,
-				D35694561EA43B6900875CF0 /* Signal.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		D35694471EA4382000875CF0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D356944E1EA43A2700875CF0 /* HiveListCollectionViewCell.swift */,
-				D356945E1EA44F5A00875CF0 /* UIPaddedTextField.swift */,
-				D35694601EA4534300875CF0 /* HiveUserCollectionViewCell.swift */,
-				D35694641EA4789700875CF0 /* ContactsTableViewCell.swift */,
-				D3185D1B1EA6F64E00DA7C7F /* SignalItemView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		D35694481EA4382000875CF0 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				D35694351EA412BC00875CF0 /* HiveListViewController.swift */,
-				BD4048BC1EAD267900EF2356 /* ContactDetailsViewController.swift */,
-				D35694581EA444AD00875CF0 /* HiveViewController.swift */,
-				D356945C1EA446F900875CF0 /* AddHiveViewController.swift */,
-				D35694621EA455F400875CF0 /* AddContactViewController.swift */,
-				D3185D191EA6D80700DA7C7F /* SignalViewController.swift */,
-				D34D064B1EA803AF0055F99F /* ColorPickerController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		D35694491EA4382E00875CF0 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				D34D06521EA82EAE0055F99F /* Router.swift */,
-				D34D06541EA835B10055F99F /* HiveProvider.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		D356942F1EA412BC00875CF0 /* HiveMind */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D35694421EA412BC00875CF0 /* Build configuration list for PBXNativeTarget "HiveMind" */;
-			buildPhases = (
-				7A427439FD6C0894D9EB1270 /* [CP] Check Pods Manifest.lock */,
-				D356942C1EA412BC00875CF0 /* Sources */,
-				D356942D1EA412BC00875CF0 /* Frameworks */,
-				D356942E1EA412BC00875CF0 /* Resources */,
-				32498F789A3989208AA98C71 /* [CP] Embed Pods Frameworks */,
-				F23D7C7FAF90F8CC78108673 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HiveMind;
-			productName = HiveMind;
-			productReference = D35694301EA412BC00875CF0 /* HiveMind.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D35694281EA412BC00875CF0 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = BrianHans;
-				TargetAttributes = {
-					D356942F1EA412BC00875CF0 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = T9X8M5MFNM;
-						ProvisioningStyle = Automatic;
-					};
-				};
-			};
-			buildConfigurationList = D356942B1EA412BC00875CF0 /* Build configuration list for PBXProject "HiveMind" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = D35694271EA412BC00875CF0;
-			productRefGroup = D35694311EA412BC00875CF0 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				D356942F1EA412BC00875CF0 /* HiveMind */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D356942E1EA412BC00875CF0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D356943E1EA412BC00875CF0 /* LaunchScreen.storyboard in Resources */,
-				D356943B1EA412BC00875CF0 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		32498F789A3989208AA98C71 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7A427439FD6C0894D9EB1270 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F23D7C7FAF90F8CC78108673 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		D356942C1EA412BC00875CF0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D34D06511EA817E80055F99F /* UIBezierPath+Polygon.swift in Sources */,
-				D356945D1EA446F900875CF0 /* AddHiveViewController.swift in Sources */,
-				D34D06551EA835B10055F99F /* HiveProvider.swift in Sources */,
-				D356944F1EA43A2700875CF0 /* HiveListCollectionViewCell.swift in Sources */,
-				D3185D1A1EA6D80700DA7C7F /* SignalViewController.swift in Sources */,
-				D3185D1C1EA6F64E00DA7C7F /* SignalItemView.swift in Sources */,
-				D35694651EA4789700875CF0 /* ContactsTableViewCell.swift in Sources */,
-				D34D064F1EA810780055F99F /* UIColor+HexInit.swift in Sources */,
-				D356944B1EA4398200875CF0 /* HiveListViewModel.swift in Sources */,
-				D35694531EA43AE600875CF0 /* HiveUser.swift in Sources */,
-				D35694571EA43B6900875CF0 /* Signal.swift in Sources */,
-				D34D06531EA82EAE0055F99F /* Router.swift in Sources */,
-				D35694591EA444AD00875CF0 /* HiveViewController.swift in Sources */,
-				D35694361EA412BC00875CF0 /* HiveListViewController.swift in Sources */,
-				D365BE3D1EAD641E00C9F8CD /* String+Clean.swift in Sources */,
-				BD4048BD1EAD267900EF2356 /* ContactDetailsViewController.swift in Sources */,
-				D35694341EA412BC00875CF0 /* AppDelegate.swift in Sources */,
-				D36C0C011EAA75E100F00E58 /* Hive.xcdatamodeld in Sources */,
-				D35694611EA4534300875CF0 /* HiveUserCollectionViewCell.swift in Sources */,
-				D35694631EA455F400875CF0 /* AddContactViewController.swift in Sources */,
-				D34D064C1EA803AF0055F99F /* ColorPickerController.swift in Sources */,
-				D356944D1EA43A0100875CF0 /* Constants.swift in Sources */,
-				D356945B1EA444B600875CF0 /* HiveViewModel.swift in Sources */,
-				D35694511EA43A9900875CF0 /* Hive.swift in Sources */,
-				D356945F1EA44F5A00875CF0 /* UIPaddedTextField.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		D356943C1EA412BC00875CF0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D356943D1EA412BC00875CF0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		D35694401EA412BC00875CF0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D35694411EA412BC00875CF0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D35694431EA412BC00875CF0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3A45E96FC8093DB16AA172F /* Pods-HiveMind.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T9X8M5MFNM;
-				INFOPLIST_FILE = HiveMind/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brianhans.HiveMind;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "HiveMind/HiveMind-BridgingHeader.h";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		D35694441EA412BC00875CF0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BE6FECD2D622B45CB6D0F96 /* Pods-HiveMind.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T9X8M5MFNM;
-				INFOPLIST_FILE = HiveMind/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brianhans.HiveMind;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "HiveMind/HiveMind-BridgingHeader.h";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		D356942B1EA412BC00875CF0 /* Build configuration list for PBXProject "HiveMind" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D35694401EA412BC00875CF0 /* Debug */,
-				D35694411EA412BC00875CF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D35694421EA412BC00875CF0 /* Build configuration list for PBXNativeTarget "HiveMind" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D35694431EA412BC00875CF0 /* Debug */,
-				D35694441EA412BC00875CF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		D36C0BFF1EAA75E100F00E58 /* Hive.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D36C0C001EAA75E100F00E58 /* Hive.xcdatamodel */,
-			);
-			currentVersion = D36C0C001EAA75E100F00E58 /* Hive.xcdatamodel */;
-			path = Hive.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
-	};
-	rootObject = D35694281EA412BC00875CF0 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>08E68DF2218800BB1A9F6114</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3FCE9B9F01A9CE1206AF87E5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>32498F789A3989208AA98C71</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>3FCE9B9F01A9CE1206AF87E5</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_HiveMind.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>7A427439FD6C0894D9EB1270</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>7BD917599957CEC5BCB50AE3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D3A45E96FC8093DB16AA172F</string>
+				<string>8BE6FECD2D622B45CB6D0F96</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>81E0B4C1D66BA50C43808816</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3FCE9B9F01A9CE1206AF87E5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8BE6FECD2D622B45CB6D0F96</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-HiveMind.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BD4048BC1EAD267900EF2356</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ContactDetailsViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BD4048BD1EAD267900EF2356</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BD4048BC1EAD267900EF2356</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D3185D191EA6D80700DA7C7F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SignalViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D3185D1A1EA6D80700DA7C7F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D3185D191EA6D80700DA7C7F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D3185D1B1EA6F64E00DA7C7F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SignalItemView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D3185D1C1EA6F64E00DA7C7F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D3185D1B1EA6F64E00DA7C7F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D3185D1D1EA7C33A00DA7C7F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>HiveMind-BridgingHeader.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34D064B1EA803AF0055F99F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ColorPickerController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34D064C1EA803AF0055F99F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D34D064B1EA803AF0055F99F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D34D064D1EA810430055F99F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D34D064E1EA810780055F99F</string>
+				<string>D34D06501EA817E80055F99F</string>
+				<string>D365BE3C1EAD641E00C9F8CD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Extensions</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34D064E1EA810780055F99F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UIColor+HexInit.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34D064F1EA810780055F99F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D34D064E1EA810780055F99F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D34D06501EA817E80055F99F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UIBezierPath+Polygon.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34D06511EA817E80055F99F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D34D06501EA817E80055F99F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D34D06521EA82EAE0055F99F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Router.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34D06531EA82EAE0055F99F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D34D06521EA82EAE0055F99F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D34D06541EA835B10055F99F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HiveProvider.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D34D06551EA835B10055F99F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D34D06541EA835B10055F99F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694271EA412BC00875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D35694321EA412BC00875CF0</string>
+				<string>D35694311EA412BC00875CF0</string>
+				<string>7BD917599957CEC5BCB50AE3</string>
+				<string>08E68DF2218800BB1A9F6114</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694281EA412BC00875CF0</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0830</string>
+				<key>LastUpgradeCheck</key>
+				<string>0830</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>BrianHans</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>D356942F1EA412BC00875CF0</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>8.3.1</string>
+						<key>DevelopmentTeam</key>
+						<string>T9X8M5MFNM</string>
+						<key>ProvisioningStyle</key>
+						<string>Automatic</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>D356942B1EA412BC00875CF0</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>D35694271EA412BC00875CF0</string>
+			<key>productRefGroup</key>
+			<string>D35694311EA412BC00875CF0</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>D356942F1EA412BC00875CF0</string>
+			</array>
+		</dict>
+		<key>D356942B1EA412BC00875CF0</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D35694401EA412BC00875CF0</string>
+				<string>D35694411EA412BC00875CF0</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D356942C1EA412BC00875CF0</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D34D06511EA817E80055F99F</string>
+				<string>D356945D1EA446F900875CF0</string>
+				<string>D34D06551EA835B10055F99F</string>
+				<string>D356944F1EA43A2700875CF0</string>
+				<string>D3185D1A1EA6D80700DA7C7F</string>
+				<string>D3185D1C1EA6F64E00DA7C7F</string>
+				<string>D35694651EA4789700875CF0</string>
+				<string>D34D064F1EA810780055F99F</string>
+				<string>D356944B1EA4398200875CF0</string>
+				<string>D35694531EA43AE600875CF0</string>
+				<string>D35694571EA43B6900875CF0</string>
+				<string>D34D06531EA82EAE0055F99F</string>
+				<string>D35694591EA444AD00875CF0</string>
+				<string>D35694361EA412BC00875CF0</string>
+				<string>D365BE3D1EAD641E00C9F8CD</string>
+				<string>BD4048BD1EAD267900EF2356</string>
+				<string>D35694341EA412BC00875CF0</string>
+				<string>D36C0C011EAA75E100F00E58</string>
+				<string>D35694611EA4534300875CF0</string>
+				<string>D35694631EA455F400875CF0</string>
+				<string>D34D064C1EA803AF0055F99F</string>
+				<string>D356944D1EA43A0100875CF0</string>
+				<string>D356945B1EA444B600875CF0</string>
+				<string>D35694511EA43A9900875CF0</string>
+				<string>D356945F1EA44F5A00875CF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D356942D1EA412BC00875CF0</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>81E0B4C1D66BA50C43808816</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D356942E1EA412BC00875CF0</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D356943E1EA412BC00875CF0</string>
+				<string>D356943B1EA412BC00875CF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D356942F1EA412BC00875CF0</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D35694421EA412BC00875CF0</string>
+			<key>buildPhases</key>
+			<array>
+				<string>7A427439FD6C0894D9EB1270</string>
+				<string>D356942C1EA412BC00875CF0</string>
+				<string>D356942D1EA412BC00875CF0</string>
+				<string>D356942E1EA412BC00875CF0</string>
+				<string>32498F789A3989208AA98C71</string>
+				<string>F23D7C7FAF90F8CC78108673</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>HiveMind</string>
+			<key>productName</key>
+			<string>HiveMind</string>
+			<key>productReference</key>
+			<string>D35694301EA412BC00875CF0</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>D35694301EA412BC00875CF0</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>HiveMind.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D35694311EA412BC00875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D35694301EA412BC00875CF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694321EA412BC00875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D34D064D1EA810430055F99F</string>
+				<string>D35694491EA4382E00875CF0</string>
+				<string>D35694451EA4382000875CF0</string>
+				<string>D35694461EA4382000875CF0</string>
+				<string>D35694471EA4382000875CF0</string>
+				<string>D35694481EA4382000875CF0</string>
+				<string>D35694331EA412BC00875CF0</string>
+				<string>D356943A1EA412BC00875CF0</string>
+				<string>D356943C1EA412BC00875CF0</string>
+				<string>D356943F1EA412BC00875CF0</string>
+				<string>D356944C1EA43A0100875CF0</string>
+				<string>D3185D1D1EA7C33A00DA7C7F</string>
+				<string>D36C0BFF1EAA75E100F00E58</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>HiveMind</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694331EA412BC00875CF0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694341EA412BC00875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694331EA412BC00875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694351EA412BC00875CF0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>HiveListViewController.swift</string>
+			<key>path</key>
+			<string>../HiveListViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694361EA412BC00875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694351EA412BC00875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356943A1EA412BC00875CF0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356943B1EA412BC00875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356943A1EA412BC00875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356943C1EA412BC00875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D356943D1EA412BC00875CF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356943D1EA412BC00875CF0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356943E1EA412BC00875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356943C1EA412BC00875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356943F1EA412BC00875CF0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694401EA412BC00875CF0</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_ACTIVE_COMPILATION_CONDITIONS</key>
+				<string>DEBUG</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D35694411EA412BC00875CF0</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Owholemodule</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D35694421EA412BC00875CF0</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D35694431EA412BC00875CF0</string>
+				<string>D35694441EA412BC00875CF0</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D35694431EA412BC00875CF0</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>D3A45E96FC8093DB16AA172F</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T9X8M5MFNM</string>
+				<key>INFOPLIST_FILE</key>
+				<string>HiveMind/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.brianhans.HiveMind</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
+				<string>HiveMind/HiveMind-BridgingHeader.h</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D35694441EA412BC00875CF0</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>8BE6FECD2D622B45CB6D0F96</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T9X8M5MFNM</string>
+				<key>INFOPLIST_FILE</key>
+				<string>HiveMind/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.brianhans.HiveMind</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
+				<string>HiveMind/HiveMind-BridgingHeader.h</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D35694451EA4382000875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D356944A1EA4398200875CF0</string>
+				<string>D356945A1EA444B600875CF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>ViewModels</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694461EA4382000875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D35694501EA43A9900875CF0</string>
+				<string>D35694521EA43AE600875CF0</string>
+				<string>D35694561EA43B6900875CF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Models</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694471EA4382000875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D356944E1EA43A2700875CF0</string>
+				<string>D356945E1EA44F5A00875CF0</string>
+				<string>D35694601EA4534300875CF0</string>
+				<string>D35694641EA4789700875CF0</string>
+				<string>D3185D1B1EA6F64E00DA7C7F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Views</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694481EA4382000875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D35694351EA412BC00875CF0</string>
+				<string>BD4048BC1EAD267900EF2356</string>
+				<string>D35694581EA444AD00875CF0</string>
+				<string>D356945C1EA446F900875CF0</string>
+				<string>D35694621EA455F400875CF0</string>
+				<string>D3185D191EA6D80700DA7C7F</string>
+				<string>D34D064B1EA803AF0055F99F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>ViewControllers</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694491EA4382E00875CF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D34D06521EA82EAE0055F99F</string>
+				<string>D34D06541EA835B10055F99F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Networking</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356944A1EA4398200875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HiveListViewModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356944B1EA4398200875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356944A1EA4398200875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356944C1EA43A0100875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Constants.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356944D1EA43A0100875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356944C1EA43A0100875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356944E1EA43A2700875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HiveListCollectionViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356944F1EA43A2700875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356944E1EA43A2700875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694501EA43A9900875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Hive.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694511EA43A9900875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694501EA43A9900875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694521EA43AE600875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HiveUser.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694531EA43AE600875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694521EA43AE600875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694561EA43B6900875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Signal.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694571EA43B6900875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694561EA43B6900875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694581EA444AD00875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HiveViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694591EA444AD00875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694581EA444AD00875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356945A1EA444B600875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HiveViewModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356945B1EA444B600875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356945A1EA444B600875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356945C1EA446F900875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AddHiveViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356945D1EA446F900875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356945C1EA446F900875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D356945E1EA44F5A00875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UIPaddedTextField.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D356945F1EA44F5A00875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D356945E1EA44F5A00875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694601EA4534300875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HiveUserCollectionViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694611EA4534300875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694601EA4534300875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694621EA455F400875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AddContactViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694631EA455F400875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694621EA455F400875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D35694641EA4789700875CF0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ContactsTableViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D35694651EA4789700875CF0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D35694641EA4789700875CF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D365BE3C1EAD641E00C9F8CD</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>String+Clean.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D365BE3D1EAD641E00C9F8CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D365BE3C1EAD641E00C9F8CD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D36C0BFF1EAA75E100F00E58</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D36C0C001EAA75E100F00E58</string>
+			</array>
+			<key>currentVersion</key>
+			<string>D36C0C001EAA75E100F00E58</string>
+			<key>isa</key>
+			<string>XCVersionGroup</string>
+			<key>path</key>
+			<string>Hive.xcdatamodeld</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+			<key>versionGroupType</key>
+			<string>wrapper.xcdatamodel</string>
+		</dict>
+		<key>D36C0C001EAA75E100F00E58</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.xcdatamodel</string>
+			<key>path</key>
+			<string>Hive.xcdatamodel</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D36C0C011EAA75E100F00E58</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D36C0BFF1EAA75E100F00E58</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D3A45E96FC8093DB16AA172F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-HiveMind.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F23D7C7FAF90F8CC78108673</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-HiveMind/Pods-HiveMind-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D35694281EA412BC00875CF0</string>
+</dict>
+</plist>
