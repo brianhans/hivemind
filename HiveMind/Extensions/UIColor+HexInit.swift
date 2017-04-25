@@ -38,6 +38,11 @@ extension UIColor {
         return UIColor(hex: 0xFDC462)
     }
     
+    @nonobjc static var hiveYellow: UIColor {
+        return UIColor(hex: 0xFCEF92)
+    }
+    
+    
     @nonobjc static var aquaHaze: UIColor {
         return UIColor(hex: 0xD5D6D4)
     }
