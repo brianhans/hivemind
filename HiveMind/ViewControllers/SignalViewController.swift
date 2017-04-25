@@ -31,6 +31,7 @@ class SignalViewController: UIViewController {
         textField.delegate = self
         textField.text = "Enter Title"
         textField.textColor = UIColor.lightGray
+        textField.tintColor = UIColor.goldenTainoi
         return textField
     }()
     
@@ -91,6 +92,7 @@ class SignalViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         
         let signalItem = SignalItemView(frame: .zero, color: colors[0])
+        signalItem.tintColor = UIColor.goldenTainoi
         
         navigationBar.backgroundColor = UIColor.clear
         navigationBar.isTranslucent = true
@@ -155,7 +157,10 @@ class SignalViewController: UIViewController {
     func addInputField() {
         let signalItem = SignalItemView(frame: .zero, color: colors[signalItemStackView.arrangedSubviews.count - 1])
         signalItem.colorButton.addTarget(self, action: #selector(showColorPicker), for: .touchUpInside)
-        signalItemStackView.insertArrangedSubview(signalItem, at: signalItemStackView.arrangedSubviews.count - 1)
+        signalItem.tintColor = UIColor.goldenTainoi
+
+        self.signalItemStackView.insertArrangedSubview(signalItem, at: self.signalItemStackView.arrangedSubviews.count - 1)
+        signalItem.becomeFirstResponder()
         
         //Remove the add button if they reach the max amount
         if signalItemStackView.arrangedSubviews.count > 3 {

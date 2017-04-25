@@ -13,6 +13,12 @@ class SignalItemView: UIView {
     let colorButton: UIButton
     let signalTitleTextField: UITextField
     
+    override var tintColor: UIColor! {
+        didSet {
+            signalTitleTextField.tintColor = tintColor
+        }
+    }
+    
     init(frame: CGRect, color: UIColor) {
         self.colorButton = UIButton(type: .custom)
         self.colorButton.backgroundColor = color
@@ -46,6 +52,10 @@ class SignalItemView: UIView {
             make.top.bottom.equalToSuperview()
             make.height.equalTo(60)
         }
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        return signalTitleTextField.becomeFirstResponder()
     }
     
     func setColor(_ color: UIColor) {
