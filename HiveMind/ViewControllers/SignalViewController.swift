@@ -244,17 +244,29 @@ class SignalViewController: UIViewController {
             height = UIScreen.main.bounds.height - keyboardFrame.size.height - navigationBar.frame.height
         }
         
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            self.contentView.snp.updateConstraints({ (make) in
-                make.bottom.equalToSuperview().offset(offset)
+        var isFirstResponder = false
+        
+        for item in signalItemStackView.arrangedSubviews {
+            for subview in item.subviews {
+                if subview.isFirstResponder {
+                    isFirstResponder = true
+                }
+            }
+        }
+        
+        if isFirstResponder {
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.contentView.snp.updateConstraints({ (make) in
+                    make.bottom.equalToSuperview().offset(offset)
+                })
+                
+                self.signalItemStackView.snp.makeConstraints({ (make) in
+                    make.height.equalTo(height)
+                })
+                
+                self.view.layoutIfNeeded()
             })
-            
-            self.signalItemStackView.snp.makeConstraints({ (make) in
-                make.height.equalTo(height)
-            })
-            
-            self.view.layoutIfNeeded()
-        })
+        }
     }
 }
 
