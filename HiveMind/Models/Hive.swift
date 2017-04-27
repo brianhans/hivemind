@@ -85,6 +85,34 @@ class Hive {
         }
     }
     
+    func delete() -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return false
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoreDateConstants.hive)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        
+        //Check to see if this hive already exist and update it if it does or create a new one
+        if let hives = try? managedContext.fetch(fetchRequest), hives.count > 0 {
+            let hive = hives[0]
+            
+            managedContext.delete(hive)
+            
+            do {
+                try managedContext.save()
+                return true
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+        
+        return false
+    }
+    
     static func getHives() -> [Hive] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []

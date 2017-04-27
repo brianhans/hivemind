@@ -13,7 +13,15 @@ class HiveListViewModel {
     var hives: [Hive] = []
 
     
-    func addHive() {
+    func deleteHive(at index: Int) -> Bool {
+        let hiveIndex = index - 1
+        guard hiveIndex >= 0 && hiveIndex < hives.count else { return false }
         
+        if hives[hiveIndex].delete() {
+            hives.remove(at: hiveIndex)
+            return true
+        }
+        
+        return false
     }
 }

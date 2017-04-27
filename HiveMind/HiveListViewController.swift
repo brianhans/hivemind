@@ -29,6 +29,11 @@ class HiveListViewController: UIViewController {
         cv.delegate = self
         cv.dataSource = self
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(cellLongPress(sender:)))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delaysTouchesBegan = true
+        cv.addGestureRecognizer(longPressGesture)
+        
         return cv
     }()
     
@@ -76,6 +81,26 @@ class HiveListViewController: UIViewController {
         addHiveViewController.modalPresentationStyle = .overCurrentContext
         addHiveViewController.modalTransitionStyle = .crossDissolve
         self.present(addHiveViewController, animated: true, completion: nil)
+    }
+    
+    func cellLongPress(sender: UILongPressGestureRecognizer) {
+        let selectedPoint = sender.location(in: collectionView)
+        if let selectedIndex = collectionView.indexPathForItem(at: selectedPoint) {
+            let alertView = UIAlertController(title: "Deleted Hive", message: "Are you sure you want to delete this hive?", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                if self.viewModel.deleteHive(at: selectedIndex.item) {
+                    self.collectionView.reloadData()
+                }
+            })
+            
+            alertView.addAction(deleteAction)
+            
+            self.present(alertView, animated: true, completion: nil)
+        }
+        
+        
     }
 }
 
